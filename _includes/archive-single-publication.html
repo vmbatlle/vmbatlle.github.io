@@ -98,7 +98,7 @@
         <a href=" https://arxiv.org/abs/{{ post.arxiv }} " class="btn btn-outline-secondary btn-sm text-decoration-none">ArXiv</a>
       {% endif %}
     {% endif %}
-    {% if post.citation %}
+    {% if post.citation or post.bibtex %}
       <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" 
         data-bs-target="#collapse/citation/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}" 
         aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
@@ -140,12 +140,17 @@
         </div>
       </div>
     {% endif %}
-    {% if post.citation %}
+    {% if post.citation or post.bibtex %}
       <div class="collapse" id="collapse/citation/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
         <div class="card card-body">
-          <small class="font-monospace" style="font-size: 0.75em;">
-            {{ post.citation | markdownify }}
-          </small>
+          {% if post.citation %}
+            <small class="font-monospace" style="font-size: 0.75em;">
+              {{ post.citation | markdownify }}
+            </small>
+          {% else %}
+            {% capture bibtex %}{% include bibtex.html %}{% endcapture %}
+              {{ bibtex | markdownify }}
+          {% endif %}
         </div>
       </div>
     {% endif %}

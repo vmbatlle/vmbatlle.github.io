@@ -96,4 +96,18 @@ $(document).ready(function(){
     midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
   });
 
+  $(".highlighter-rouge").each(function(){
+    var $code = $(this).children("div").children("pre").children("code").text();
+    var $copyBtn = $('<span></span>')
+    $(this).prepend($copyBtn);
+    $copyBtn.tooltip({
+      title: "Copy to clipboard",
+      placement: "top",
+      trigger: "hover"
+    });
+    $copyBtn.on("click", function(){  
+      navigator.clipboard.writeText($code);
+    });
+  });
+
 });
