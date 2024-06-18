@@ -202,10 +202,10 @@ kramdown:
 collections:
   teaching:
     output: false
-    permalink: /:collection/:path/
+    permalink: /:collection/:title/
   publications:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:title/
 
 # Defaults
 defaults:
@@ -230,7 +230,7 @@ defaults:
       path: ""
       type: publications
     values:
-      layout: single
+      layout: publication
       author_profile: false
       share: true
       comments: false

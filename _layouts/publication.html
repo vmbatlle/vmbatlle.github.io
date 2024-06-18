@@ -1,0 +1,165 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+  {% include page__hero.html %}
+{% endif %}
+
+{% if page.url != "/" and site.breadcrumbs %}
+  {% unless paginator %}
+    {% include breadcrumbs.html %}
+  {% endunless %}
+{% endif %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
+    {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
+
+    <div class="page__inner-wrap">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        <header>
+          {% if page.title %}<h1 class="page__title text-center mb-4" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.read_time %}
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+          {% endif %}
+        {% if page.modified %}
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
+        {% endif %}
+
+        {% if page.authors %}
+          <div class="archive__item-authors authors h4 d-flex justify-content-around flex-wrap mb-3">
+          {% include authors-grid.html post=page %}
+          </div>
+        {% endif %}
+        
+        {% if page.venue and page.date %}
+          <p class="text-center">Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif page.date %}
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+        {% endif %}
+
+        {% assign btn_style = "mx-1" %}
+
+        <div class="d-flex justify-content-center">
+        {% if post.paperurl %}
+          <a href=" {{ post.paperurl }} " class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-unlock-fill text-success"></i> PDF</a>
+        {% elsif post.doi or post.arxiv %}
+          {% if post.doi %}
+            <a href="{{ post.doi }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-lock-fill text-danger"></i> PDF</a>
+          {% endif %}
+          {% if post.arxiv %}
+            <a href=" https://arxiv.org/abs/{{ post.arxiv }} " class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">ArXiv</a>
+          {% endif %}
+        {% endif %}
+
+        {% if post.citation or post.bibtex %}
+        <a href="#cite" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-quote"></i> Cite</a>
+        {% endif %}
+
+        {% if post.videourl %}
+          {% if post.videourl contains "://www.youtube.com" %}
+            <a href="#video" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">Video</a>
+          {% else %}
+            <a href="{{ post.videourl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
+          {% endif %}
+        {% endif %}
+
+        {% if post.slidesurl %}
+          <a href="{{ post.slidesurl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">Slides</a>
+        {% endif %}
+
+        {% if post.codeurl %}
+          <a href="{{ post.codeurl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
+        {% endif %}
+
+        {% if post.website %}
+          {% assign website = post.website %}
+          <a href="{{ website }}" rel="permalink" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
+        {% endif %}
+        </div>
+        </header>
+      {% endunless %}
+
+      <section class="page__content" itemprop="text">
+
+        {% if post.videourl and post.videourl contains "://www.youtube.com" %}
+          <h3 class="mt-5" id="video">Video</h3>
+          {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        {% endif %}
+
+        {% if page.abstract %}
+          <h3 class="mt-5">Abstract</h3>
+          {{ page.abstract | markdownify }}
+        {% endif %}
+
+        {{ content }}
+
+        <h3 id="cite">BibTeX</h3>
+        {% capture bibtex %}{% include bibtex.html post=page %}{% endcapture %}
+        {% capture bib_citekey %}{% include bibtex-citekey.html post=page %}{% endcapture %}
+        <span copy-to-clipboard="true" download="{{ bib_citekey | strip }}.bib">
+          {{ bibtex | markdownify }}
+        </span>
+
+        {% if page.related %}
+          <h3>Related Work</h3>
+          <ul>
+          {% for publication in site.publications reversed %}
+            {% if page.related contains publication.id %}     
+            <li>
+              <span class="d-block mb-2">
+              {{ publication.date | date: "%Y" }}: <a href="{{ publication.url }}">{{ publication.title }}</a>
+              </span>
+              {% capture bibtex %}{% include bibtex.html post=publication %}{% endcapture %}
+              {% capture bib_citekey %}{% include bibtex-citekey.html post=publication %}{% endcapture %}
+              <span copy-to-clipboard="true" download="{{ bib_citekey | strip }}.bib">
+                {{ bibtex | markdownify }}
+              </span>
+            </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+      </section>
+
+      <footer class="page__meta">
+        {% if site.data.ui-text[site.locale].meta_label %}
+          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+        {% endif %}
+        {% include page__taxonomy.html %}
+      </footer>
+
+      {% if page.share %}{% include social-share.html %}{% endif %}
+
+    </div>
+
+    {% if site.comments.provider and page.comments %}
+      {% include comments.html %}
+    {% endif %}
+  </article>
+
+  {% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}
+  {% if page.id and page.related and site.related_posts.size > 0 %}
+    <div class="page__related">
+      {% if site.data.ui-text[site.locale].related_label %}
+        <h4 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h4>
+      {% endif %}
+      <div class="grid__wrapper">
+        {% for post in site.related_posts limit:4 %}
+          {% include archive-single.html type="grid" %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>

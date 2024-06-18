@@ -7,7 +7,7 @@ date: 2023-06-21
 location: "Universidad de Zaragoza"
 grade: "Matrícula de honor"
 authors:
-    - Raúl Iranzo Cubel
+    - Iranzo Cubel, Raúl
     - vmbatlle
     - josemari
 ---

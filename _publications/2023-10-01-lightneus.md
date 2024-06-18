@@ -19,5 +19,7 @@ abstract:
 
   Our method is the first one to produce watertight reconstructions of whole colon sections. We demonstrate excellent accuracy on phantom imagery. Remarkably, the watertight prior combined with illumination decline, allows to complete the reconstruction of unseen portions of the surface with acceptable accuracy, paving the way to automatic quality assessment of cancer screening explorations, measuring the global percentage of observed mucosa."
 bibtex: inproceedings
+related:
+  - /publications/photometric
 ---
 Empty website

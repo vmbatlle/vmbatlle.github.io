@@ -1,5 +1,7 @@
+{% assign post = include.post %}
+{% assign max_authors = include.max_authors | default: 100 %}
 {% assign num_authors = post.authors.size %}
-{% if num_authors > 10 %}
+{% if num_authors > max_authors %}
   {% assign authors = post.authors | first %}
   {% assign appendix = " et al." %}
   {% assign num_authors = 1 %}
@@ -15,26 +17,7 @@
   {% elsif num_authors > 1 %}
     {% assign appendix = "." %}
   {% endif %}
-  {% if site.data.authors contains author_id %}
-    {% assign author = site.data.authors[author_id] %}
-    {% assign name = author.name | split: "," %}
-    {% assign last_name = name | first %}
-    {% assign first_name = name | last %}
-    {% assign name = first_name | append: " " | append: last_name %}
-    <span class="text-nowrap">
-    {% if author.uri %}
-      <a href="{{ author.uri }}">{{ name }}</a>
-    {% else %}
-      {{ name }}
-    {% endif %}
-    {% if author.orcid %}
-      <a href="https://orcid.org/{{ author.orcid }}"><i class="ai ai-orcid" aria-hidden="true"></i></a>{{ appendix }}
-    {% endif %}
-    </span>
-  {% else %}
-    {% assign name = author_id %}
-    <span class="text-nowrap">
-      {{ name | append: appendix }}
-    </span>
-  {% endif %}
+  <span class="text-nowrap">
+    {% include author-badge.html author=author_id %}{{ appendix }}
+  </span>
 {% endfor %}

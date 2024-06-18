@@ -17,7 +17,7 @@
         <p>
         {% if post.authors %}
         <span class="archive__item-authors authors">
-          {% include authors-list.html %}
+          {% include authors-list.html post=post %}
           <br>
         </span>
         {% endif %}

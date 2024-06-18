@@ -1,0 +1,15 @@
+{% assign post = include.post %}
+{% assign max_authors = include.max_authors | default: 99999 %}
+{% assign num_authors = post.authors.size %}
+{% if num_authors > max_authors %}
+  {% assign authors = post.authors | first %}
+  {% assign appendix = " et al." %}
+  {% assign num_authors = 1 %}
+{% else %}
+  {% assign authors = post.authors %}
+{% endif %}
+{% for post_author in authors %}
+  <span class="text-nowrap">
+    {% include author-badge.html author=post_author %}{{ appendix }}
+  </span>
+{% endfor %}

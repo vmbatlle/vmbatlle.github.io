@@ -1,3 +1,4 @@
+{% assign post = include.post %}
 {% assign types = "article,book,booklet,conference,inbook,incollection,inproceedings,manual,mastersthesis,misc,phdthesis,proceedings,techreport,unpublished" | split: "," %}
 {% assign type = post.bibtex | downcase | strip %}
 {% if types contains type %}
@@ -8,8 +9,6 @@
     {% else %}
         {% assign author_name = post.authors[0] %}
     {% endif %}
-
-
 
     {% capture bib_title %}{{ post.title }}{% endcapture %}
     {% capture bib_authors %}{% for author in post.authors %}{% if site.data.authors contains author %}{{ site.data.authors[author].name }}{% else %}{{ author }}{% endif %}{% unless forloop.last %} and {% endunless %}{% endfor %}{% endcapture %}
@@ -36,7 +35,7 @@
 
 
     {% assign year = post.date | date: "%Y" %}
-    {% capture bib_citekey %}{% include bibtex-citekey.html %}{% endcapture %}
+    {% capture bib_citekey %}{% include bibtex-citekey.html post=post %}{% endcapture %}
     @{{type}}{ {{ bib_citekey | strip }},
         title = { {{ bib_title }} },
         author = { {{ bib_authors }} },{% if type == "article" %}

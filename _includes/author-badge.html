@@ -1,0 +1,17 @@
+{% assign author = include.author %}
+{%- if site.data.authors contains author -%}
+    {% assign author = site.data.authors[author] %}
+    {% assign name = author.name | split: "," %}
+    {% assign last_name = name | first %}
+    {% assign first_name = name | last %}
+    {% assign name = first_name | append: " " | append: last_name %}
+    {%- if author.uri -%}
+        <a href="{{ author.uri }}">{{ name }}</a>
+    {%- else -%}
+        {{ name }}
+    {%- endif -%}
+    {%- if author.orcid -%}&nbsp;<a href="https://orcid.org/{{ author.orcid }}"><i class="ai ai-orcid" aria-hidden="true"></i></a>{%- endif -%}
+{%- else -%}
+    {% assign name = author | split: ", " %}
+    {{ name | last }} {{ name | first }}
+{%- endif -%}
