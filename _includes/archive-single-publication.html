@@ -105,11 +105,19 @@
         <i class="bi bi-quote"></i> Cite
       </button>
     {% endif %}
+    {% if post.videourl %}
+      {% if post.videourl contains "://www.youtube.com" %}
+      <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#collapse/video/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}" 
+          aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
+        Video
+      </button>
+      {% else %}
+          <a href="{{ post.videourl }}" class="btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
+      {% endif %}
+    {% endif %}
     {% if post.slidesurl %}
       <a href="{{ post.slidesurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none">Slides</a>
-    {% endif %}
-    {% if post.videourl %}
-      <a href="{{ post.videourl }}" class="btn btn-outline-secondary btn-sm text-decoration-none">Video</a>
     {% endif %}
     {% if post.codeurl %}
       <a href="{{ post.codeurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
@@ -137,6 +145,16 @@
         <div class="card card-body">
           <small class="font-monospace" style="font-size: 0.75em;">
             {{ post.citation | markdownify }}
+          </small>
+        </div>
+      </div>
+    {% endif %}
+    {% if post.videourl and post.videourl contains "://www.youtube.com" %}
+      {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
+      <div class="collapse" id="collapse/video/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
+        <div class="card card-body">
+          <small class="font-monospace" style="font-size: 0.75em;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </small>
         </div>
       </div>
