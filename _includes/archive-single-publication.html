@@ -149,7 +149,10 @@
             </small>
           {% else %}
             {% capture bibtex %}{% include bibtex.html %}{% endcapture %}
+            {% capture bib_citekey %}{% include bibtex-citekey.html %}{% endcapture %}
+            <span copy-to-clipboard="true" download="{{ bib_citekey | strip }}.bib">
               {{ bibtex | markdownify }}
+            </span>
           {% endif %}
         </div>
       </div>

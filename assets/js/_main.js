@@ -98,16 +98,45 @@ $(document).ready(function(){
 
   $(".highlighter-rouge").each(function(){
     var $code = $(this).children("div").children("pre").children("code").text();
-    var $copyBtn = $('<span></span>')
-    $(this).prepend($copyBtn);
-    $copyBtn.tooltip({
-      title: "Copy to clipboard",
-      placement: "top",
-      trigger: "hover"
-    });
-    $copyBtn.on("click", function(){  
-      navigator.clipboard.writeText($code);
-    });
+
+    var $toolbar = null;
+    if ($(this).parent().is(":not([copy-to-clipboard='false'])")) {
+      if ($toolbar === null) {
+        $toolbar = $('<div class="highlight-toolbar"></div>');
+        $(this).prepend($toolbar);
+      }
+      var $btnCopy = $('<span class="copy-to-clipboard"></span>')
+      $toolbar.prepend($btnCopy);
+      const tooltip = new bootstrap.Tooltip($btnCopy, {
+          title: "Copy to clipboard",
+          placement: "top",
+          trigger: "hover"
+        })
+      $btnCopy.on("click", function(){  
+        navigator.clipboard.writeText($code);
+        tooltip.setContent({ '.tooltip-inner': 'Copied' });
+        $btnCopy.addClass("copied");
+        window.setTimeout(function(){
+          tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
+          $btnCopy.removeClass("copied");
+        }, 2000);
+      });
+    };
+
+    if ($(this).parent().is("[download]")) {
+      var filename = $(this).parent().attr("download");
+      if ($toolbar === null) {
+        $toolbar = $('<div class="highlight-toolbar"></div>');
+        $(this).prepend($toolbar);
+      }
+      var $btnDownload = $('<a class="download" href="data:text/plain;charset=utf-8,' + encodeURIComponent($code) + '" download="' + filename + '"></a>');
+      $toolbar.prepend($btnDownload);
+      new bootstrap.Tooltip($btnDownload, {
+        title: "Download",
+        placement: "top",
+        trigger: "hover"
+      })
+    };
   });
 
 });

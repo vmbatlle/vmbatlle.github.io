@@ -9,10 +9,7 @@
         {% assign author_name = post.authors[0] %}
     {% endif %}
 
-    {% assign author_last = author_name | split: ", " | first %}
-    {% assign author_last = author_last | slugify: "latin" | split: "-" | first | downcase %}
-    {% assign year = post.date | date: "%Y" %}
-    {% assign first_word = post.title | slugify: "latin" | split: "-" | first | downcase %}
+
 
     {% capture bib_title %}{{ post.title }}{% endcapture %}
     {% capture bib_authors %}{% for author in post.authors %}{% if site.data.authors contains author %}{{ site.data.authors[author].name }}{% else %}{{ author }}{% endif %}{% unless forloop.last %} and {% endunless %}{% endfor %}{% endcapture %}
@@ -38,7 +35,9 @@
     {% capture bib_authors %}{{ bib_authors | replace: "Ú", bib_U }}{% endcapture %}
 
 
-    @{{type}}{ {{ author_last }}{{ year }}{{ first_word }},
+    {% assign year = post.date | date: "%Y" %}
+    {% capture bib_citekey %}{% include bibtex-citekey.html %}{% endcapture %}
+    @{{type}}{ {{ bib_citekey | strip }},
         title = { {{ bib_title }} },
         author = { {{ bib_authors }} },{% if type == "article" %}
         journal = { {{ post.venue }} },
