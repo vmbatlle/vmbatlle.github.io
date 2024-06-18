@@ -7,6 +7,29 @@ author_profile: true
 
 {% include base_path %}
 
+{% assign num_theses = site.teaching | where_exp: "post", "post.type contains 'thesis'" | size %}
+{% assign num_courses = site.teaching | where_exp: "post", "post.type contains 'course'" | size %}
+
+<div class="">
+  <a href="#theses" class="btn btn-outline-secondary">Theses <span class="badge rounded-pill bg-secondary">{{ num_theses }}</span></a>
+  <a href="#courses" class="btn btn-outline-secondary">Courses <span class="badge rounded-pill bg-secondary">{{ num_courses }}</span></a>
+</div>
+
+<br>
+
+<h4 id="theses">Theses</h4>
+
 {% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+  {% if post.type contains "thesis" %}
+    {% include archive-single-teaching.html %}
+  {% endif %}
 {% endfor %}
+
+<h4 id="courses">Courses</h4>
+
+{% for post in site.teaching reversed %}
+  {% if post.type contains "course" %}
+    {% include archive-single-teaching.html %}
+  {% endif %}
+{% endfor %}
+

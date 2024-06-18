@@ -1,0 +1,67 @@
+{% include base_path %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <b class="archive__item-title" itemprop="headline">
+      {{ title }}
+      {% if post.link %}
+        <a href="{{ post.link }}"><i class="bi bi-box-arrow-up-right"></i></a>
+      {% endif %}
+    </b>
+        <p>
+        {% if post.authors %}
+        <span class="archive__item-authors authors">
+          {% include authors-list.html %}
+          <br>
+        </span>
+        {% endif %}
+        {% if post.type contains "Bachelor" or post.type contains "Undergrad" %}
+          {% assign pill-color = "text-primary border border-primary" %}
+        {% elsif post.type contains "Master" %}
+          {% assign pill-color = "text-danger border border-danger" %}
+        {% elsif post.type contains "PhD" %}
+          {% assign pill-color = "text-success border border-success" %}
+        {% else %}
+          {% assign pill-color = "text-secondary border border-secondary" %}
+        {% endif %}
+        <span class="badge rounded-pill {{pill-color}}">{{ post.type }}</span> 
+        {% if post.type contains "thesis" %}
+          {% if post.grade %}
+            <i>{{ post.venue }}</i>, {{post.location}}, {{ post.date | date: "%Y" }}.
+            <br>
+            Grade: {{ post.grade }}.
+          {% endif %}
+          </p>
+        {% elsif post.type contains "course" %}
+          <i>{{ post.venue }}</i>, {{post.location}}.<br>
+          {% assign course_month = post.date | date: "%M" | times: 1 %}
+          {% if course_month > 1 and course_month < 8 %}
+            Spring
+          {% else %}
+            Fall
+          {% endif %}
+          Semester.
+          
+          From
+          {{ post.date | date: "%Y" }} 
+          to 
+          {% if post.end_date %}
+              {{ post.end_date | date: "%Y" }}.
+          {% else %}
+              present.
+          {% endif %}
+        {% endif %}
+
+    {% if post.excerpt and site.read_more != 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+    {% elsif post.excerpt and site.read_more == 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    {% endif %}
+  </article>
+</div>

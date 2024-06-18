@@ -1,18 +1,70 @@
 # Authors
 
-Name Name:
-  name        : "Name Name"
-  uri         : "http://name.com"
-  email       : "name@name.com"
-  bio         : "This is the first name."
-  avatar      : "bio-photo-2.jpg"
-  twitter     : "name"
-  google_plus : "Name"
+vmbatlle:
+  name         : "Batlle, Víctor M"
+  uri          : "http://vmbatlle.github.io"
+  email        : 
+  bio          : 
+  avatar       :
+  twitter      : "vmbatlle_"
+  orcid        : "0000-0002-6837-934X"
+  googlescholar: "a0yLLFYAAAAJ"
 
-Name2 Name2:
-  name        : "Name2 Name2"
-  email       : "name2@name2.com"
-  bio         : "I ordered what?"
-  avatar      : "bio-photo.jpg"
-  twitter     : "name2"
-  google_plus : "Name"
+tardos:
+  name         : "Tardós, Juan D"
+  uri          : "https://webdiis.unizar.es/~jdtardos/"
+  email        : 
+  bio          : 
+  avatar       :
+  twitter      : "mingo_tardos"
+  orcid        : "0000-0002-4518-5876"
+  googlescholar: "TVf1gw0AAAAJ"
+
+josemari:
+  name         : "Montiel, José MM"
+  uri          : "https://webdiis.unizar.es/~josemari/"
+  email        : 
+  bio          : 
+  avatar       :
+  orcid        : "0000-0002-3627-7306"
+  googlescholar: "D99JRxwAAAAJ"
+
+pascal.fua:
+  name         : "Fua, Pascal"
+  uri          : "https://people.epfl.ch/pascal.fua"
+  email        : 
+  bio          : 
+  avatar       :
+  twitter      : "fuapv"
+  orcid        : "0000-0002-6702-9970"
+  googlescholar: "kzFmAkYAAAAJ"
+
+jrp:
+  name         : "Rodríguez-Puigvert, Javier"
+  uri          : "https://jrodriguezpuigvert.github.io"
+  email        : 
+  bio          : 
+  avatar       :
+  twitter      : "JRPuigvert"
+  orcid        : "0000-0003-1064-4347"
+  googlescholar: "0yxrPb4AAAAJ"
+
+jcivera:
+  name         : "Civera, Javier"
+  uri          : "https://webdiis.unizar.es/~jcivera/"
+  email        : 
+  bio          : 
+  avatar       :
+  twitter      : "jcivera"
+  orcid        : "0000-0003-1368-1151"
+  googlescholar: "j_sMzokAAAAJ"
+
+rmcantin:
+  name         : "Martinez-Cantin, Ruben"
+  uri          : "https://webdiis.unizar.es/~rmcantin/"
+  email        : 
+  bio          : 
+  avatar       :
+  twitter      : "rmcantin"
+  orcid        : "0000-0002-6741-844X"
+  googlescholar: "qFjif58AAAAJ"

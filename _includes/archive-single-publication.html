@@ -1,0 +1,148 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>"  | strip %}
+{% else %}
+  {% assign title = post.title | strip %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="row p-3">
+    {% if include.type == "grid" and teaser %}
+      <div class="archive__item-teaser">
+        <img src=
+          {% if teaser contains "://" %}
+            "{{ teaser }}"
+          {% else %}
+            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          alt="Teaser for {{ title }}">
+      </div>
+    {% else %}
+      <div class="d-none d-md-inline col-md-4">
+      {% if teaser %}
+        <img class="img-thumbnail p-2" src=
+        {% if teaser contains "://" %}
+          "{{ teaser }}"
+        {% else %}
+          "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+        {% endif %}
+        alt="">
+      {% elsif post.videourl contains "://www.youtube.com" %}
+        {% assign youtube_code = post.videourl | split: "v=" | last | split: "?" | first %}
+        <img class="img-thumbnail" src="https://img.youtube.com/vi/{{ youtube_code }}/mqdefault.jpg" alt="Video thumbnail for {{ title }}">
+      {% else %}
+        
+      {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="col-12 col-md-8">
+    <b class="archive__item-title" itemprop="headline">
+      {% if post.link %}
+        <a href="{{ post.link }}">{{ title }}.</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+      {% elsif post.doi %}
+        <a href="{{ post.doi }}" rel="permalink">{{ title }}.</a>
+      {% else %}
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}.</a>
+      {% endif %}
+    </b>
+
+    {% if post.authors %}
+      <span class="archive__item-authors authors">
+      {% include authors-list.html %}
+      </span>
+    {% endif %}
+    
+    {% if post.read_time %}
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+    {% endif %}
+
+        {% if post.collection == 'teaching' %}
+          <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif post.collection == 'publications' %}
+          <span>In <i>{{ post.venue | replace: "(", "(<b>" | replace: ")", "</b>)"}}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }}. </span>
+        {% elsif post.date %}
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+        {% endif %}
+    <!-- 
+    {% if post.excerpt and site.read_more != 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+    {% elsif post.excerpt and site.read_more == 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    {% endif %}
+     -->
+    <p class="archive__item-excerpt" itemprop="description"></p>
+    <div id="collapse/parent/{{post.id}}">
+    {% if post.abstract %}
+      <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapse/abstract/{{post.id}}" 
+        aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
+        Abstract
+      </button>
+    {% endif %}
+    {% if post.paperurl %}
+      <a href=" {{ post.paperurl }} " class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-unlock-fill text-success"></i> PDF</a>
+    {% elsif post.doi or post.arxiv %}
+      {% if post.doi %}
+        <a href="{{ post.doi }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-lock-fill text-danger"></i> PDF</a>
+      {% endif %}
+      {% if post.arxiv %}
+        <a href=" https://arxiv.org/abs/{{ post.arxiv }} " class="btn btn-outline-secondary btn-sm text-decoration-none">ArXiv</a>
+      {% endif %}
+    {% endif %}
+    {% if post.citation %}
+      <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" 
+        data-bs-target="#collapse/citation/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}" 
+        aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
+        <i class="bi bi-quote"></i> Cite
+      </button>
+    {% endif %}
+    {% if post.slidesurl %}
+      <a href="{{ post.slidesurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none">Slides</a>
+    {% endif %}
+    {% if post.videourl %}
+      <a href="{{ post.videourl }}" class="btn btn-outline-secondary btn-sm text-decoration-none">Video</a>
+    {% endif %}
+    {% if post.codeurl %}
+      <a href="{{ post.codeurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
+    {% endif %}
+    {% assign content_size = post.content | strip_html | strip | size %}
+    {% if post.website or content_size > 0 %}
+      {% if post.website %}
+        {% assign website = post.website %}
+      {% else %}
+        {% assign website = base_path | append: post.url %}
+      {% endif %}
+      <a href="{{ website }}" rel="permalink" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
+    {% endif %}
+    {% if post.abstract %}
+      <div class="collapse" id="collapse/abstract/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
+        <div class="card card-body">
+          <small>
+            {{ post.abstract | markdownify }}
+          </small>
+        </div>
+      </div>
+    {% endif %}
+    {% if post.citation %}
+      <div class="collapse" id="collapse/citation/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
+        <div class="card card-body">
+          <small class="font-monospace" style="font-size: 0.75em;">
+            {{ post.citation | markdownify }}
+          </small>
+        </div>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+  </div>
+  </article>
+</div>

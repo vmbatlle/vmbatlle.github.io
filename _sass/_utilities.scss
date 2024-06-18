@@ -192,6 +192,14 @@ body:hover .visually-hidden button {
   padding-right: 0.5em;
 }
 
+/* authors*/
+.authors {
+  .ai-orcid,
+  .ai-orcid-square {
+    color: $orcid-color;
+  }
+}
+
 /* social icons*/
 
 .social-icons {
@@ -314,6 +322,11 @@ body:hover .visually-hidden button {
   .fa-xing,
   .fa-xing-square {
     color: $xing-color;
+  }
+
+  .fa-google-scholar,
+  .fa-google-scholar-square {
+    color: $google-scholar-color;
   }
 }
 

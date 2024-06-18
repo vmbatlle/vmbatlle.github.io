@@ -14,7 +14,7 @@
     @include prefix(0.5 of 12);
   }
 
-  a {
+  .archive__item-title a {
     text-decoration: underline;
 
     &:hover {
@@ -48,6 +48,17 @@
   }
 }
 
+.archive__item-authors {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
 /* remove border*/
 .page__content {
 
@@ -77,10 +88,6 @@
 .archive__item:hover {
   .archive__item-teaser {
     box-shadow: 0 0 10px rgba(#000, 0.25);
-  }
-
-  .archive__item-title {
-    text-decoration: underline;
   }
 }
 
