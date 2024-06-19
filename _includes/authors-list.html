@@ -1,5 +1,5 @@
 {% assign post = include.post %}
-{% assign max_authors = include.max_authors | default: 100 %}
+{% assign max_authors = include.max_authors | default: 10 %}
 {% assign num_authors = post.authors.size %}
 {% if num_authors > max_authors %}
   {% assign authors = post.authors | first %}

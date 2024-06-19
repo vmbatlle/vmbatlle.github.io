@@ -7,6 +7,7 @@ venue: 'IEEE/CVF International Conference on Computer Vision (ICCV)'
 pages: 21273-21283
 videourl: 'https://www.youtube.com/watch?v=Jrzzy2JjOCQ'
 paperurl: 'https://openaccess.thecvf.com/content/ICCV2023/papers/Rodriguez-Puigvert_LightDepth_Single-View_Depth_Self-Supervision_from_Illumination_Decline_ICCV_2023_paper.pdf'
+suppurl: 'https://openaccess.thecvf.com/content/ICCV2023/supplemental/Rodriguez-Puigvert_LightDepth_Single-View_Depth_ICCV_2023_supplemental.zip'
 arxiv: '2308.10525'
 website: 'https://sites.google.com/unizar.es/lightdepth'
 authors:

@@ -48,8 +48,6 @@
     <b class="archive__item-title" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}.</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      {% elsif post.doi %}
-        <a href="{{ post.doi }}" rel="permalink">{{ title }}.</a>
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}.</a>
       {% endif %}
@@ -122,14 +120,8 @@
     {% if post.codeurl %}
       <a href="{{ post.codeurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
     {% endif %}
-    {% assign content_size = post.content | strip_html | strip | size %}
-    {% if post.website or content_size > 0 %}
-      {% if post.website %}
-        {% assign website = post.website %}
-      {% else %}
-        {% assign website = base_path | append: post.url %}
-      {% endif %}
-      <a href="{{ website }}" rel="permalink" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
+    {% if post.website %}
+      <a href="{{ post.website }}" rel="permalink" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
     {% endif %}
     {% if post.abstract %}
       <div class="collapse" id="collapse/abstract/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">

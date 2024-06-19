@@ -41,7 +41,8 @@ layout: default
         {% endif %}
         
         {% if page.venue and page.date %}
-          <p class="text-center">Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
+          <p class="text-center">Published in <i>{{ page.venue }}</i><br>
+            {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}
@@ -60,16 +61,18 @@ layout: default
           {% endif %}
         {% endif %}
 
+        {% if post.suppurl %}
+          <a href=" {{ post.suppurl }} " class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-plus-lg"></i> Supp</a>
+        {% endif %}
+
         {% if post.citation or post.bibtex %}
         <a href="#cite" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-quote"></i> Cite</a>
         {% endif %}
 
         {% if post.videourl %}
-          {% if post.videourl contains "://www.youtube.com" %}
-            <a href="#video" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">Video</a>
-          {% else %}
+          {% unless post.videourl contains "://www.youtube.com" %}
             <a href="{{ post.videourl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
-          {% endif %}
+          {% endunless %}
         {% endif %}
 
         {% if post.slidesurl %}
@@ -94,6 +97,15 @@ layout: default
           <h3 class="mt-5" id="video">Video</h3>
           {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        {% elsif post.header.teaser %}
+          <img src=
+          {% if post.header.teaser contains "://" %}
+            "{{ post.header.teaser }}"
+          {% else %}
+            "{{ post.header.teaser | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          class="mt-5"
+          alt="Teaser for {{ post.title }}">
         {% endif %}
 
         {% if page.abstract %}
