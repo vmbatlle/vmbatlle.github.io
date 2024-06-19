@@ -146,6 +146,9 @@ $(document).ready(function(){
         title: document.title,
         url: location.href
       }).catch(console.error);
+    } else {
+      const element = document.getElementById("share");
+      element.scrollIntoView();
     }
   });
 
