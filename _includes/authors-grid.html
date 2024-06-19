@@ -9,7 +9,7 @@
   {% assign authors = post.authors %}
 {% endif %}
 {% for post_author in authors %}
-  <span class="text-nowrap">
-    {% include author-badge.html author=post_author %}{{ appendix }}
+  <span class="author-badge text-nowrap">
+    {% include author-badge.html author=post_author show_notes=include.show_notes %}{{ appendix }}
   </span>
 {% endfor %}

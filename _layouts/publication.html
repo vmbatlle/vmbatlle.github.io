@@ -37,9 +37,15 @@ layout: default
         {% endif %}
 
         {% if page.authors %}
-          <div class="archive__item-authors authors h4 d-flex justify-content-around flex-wrap mb-3">
-          {% include authors-grid.html post=page %}
+          <div class="page__authors authors h4 d-flex justify-content-around flex-wrap mb-3">
+          {% include authors-grid.html post=page show_notes=true %}
           </div>
+        {% endif %}
+
+        {% if page.notes %}
+          <p class="page__author-notes d-flex justify-content-around flex-wrap mb-3">
+            {% include author-notes.html post=page %}
+          </p>
         {% endif %}
         
         {% if page.venue and page.date %}

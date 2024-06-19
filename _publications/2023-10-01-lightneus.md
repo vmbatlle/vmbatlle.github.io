@@ -8,13 +8,17 @@ venue: 'Medical Image Computing and Computer Assisted Intervention (MICCAI)'
 videourl: 'https://www.youtube.com/watch?v=YnyUutpGGg4'
 arxiv: '2309.02777'
 authors: 
-  - vmbatlle
-  - josemari
-  - pascal.fua
-  - tardos
+  - vmbatlle{1}
+  - josemari{1}
+  - pascal.fua{2}
+  - tardos{1}
+notes:
+  - "{1} Universidad de Zaragoza"
+  - "{2} Ecole Polytechnique Fédérale de Lausanne"
 header:
   teaser: batlle23_lightneus.webp
   teaser_background: '#28252d'
+  og_image: batlle2023_lightneus-c1v1-comp.webp
 abstract:
   "We propose a new approach to 3D reconstruction from sequences of images acquired by monocular endoscopes. It is based on two key insights. First, endoluminal cavities are watertight, a property naturally enforced by modeling them in terms of a signed distance function. Second, the scene illumination is variable. It comes from the endoscope’s light sources and decays with the inverse of the squared distance to the surface. To exploit these insights, we build on NeuS [25], a neural implicit surface reconstruction technique with an outstanding capability to learn appearance and a SDF surface model from multiple views, but currently limited to scenes with static illumination. To remove this limitation and exploit the relation between pixel brightness and depth, we modify the NeuS architecture to explicitly account for it and introduce a calibrated photometric model of the endoscope’s camera and light source.
 

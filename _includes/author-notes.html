@@ -1,0 +1,8 @@
+{% assign post = include.post %}
+{% for note in post.notes %}
+  {% assign symbol = note | split: '}' | first | remove: '{' %}
+  {% assign text = note | split: '}' | last | strip %}
+  <span class="author-note">
+    <sup>{{ symbol }}</sup>{{ text }}
+  </span>
+{% endfor %}

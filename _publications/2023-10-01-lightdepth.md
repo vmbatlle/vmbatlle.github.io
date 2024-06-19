@@ -11,13 +11,17 @@ suppurl: 'https://openaccess.thecvf.com/content/ICCV2023/supplemental/Rodriguez-
 arxiv: '2308.10525'
 website: 'https://sites.google.com/unizar.es/lightdepth'
 authors:
-  - jrp
-  - vmbatlle
-  - josemari
-  - rmcantin
-  - pascal.fua
-  - tardos
-  - jcivera
+  - jrp{1,*}
+  - vmbatlle{1,*}
+  - josemari{1}
+  - rmcantin{1}
+  - pascal.fua{2}
+  - tardos{1}
+  - jcivera{1}
+notes:
+  - "{*} Equal contribution"
+  - "{1} Universidad de Zaragoza"
+  - "{2} Ecole Polytechnique Fédérale de Lausanne"
 header:
   teaser: rodriguez23_lightdepth.gif
 abstract:
