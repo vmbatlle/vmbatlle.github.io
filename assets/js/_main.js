@@ -138,6 +138,10 @@ $(document).ready(function(){
       })
     };
   });
+  
+  $(".back-to-top").on("click", function(){
+    window.scrollTo({ top: 0 });
+  });
 
   $("#share-page").on("click", function( event ){
     if (navigator.share) {

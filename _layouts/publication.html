@@ -107,9 +107,10 @@ layout: default
       <section class="page__content" itemprop="text">
 
         {% if post.videourl and post.videourl contains "://www.youtube.com" %}
-          <h3 class="mt-5" id="video">Video</h3>
           {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
+          <div class="mt-5">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         {% elsif post.header.teaser %}
           <img src=
           {% if post.header.teaser contains "://" %}
@@ -122,13 +123,13 @@ layout: default
         {% endif %}
 
         {% if page.abstract %}
-          <h3 class="mt-5">Abstract</h3>
+          <h3 class="mt-5">Abstract<span title="Go to top" class="back-to-top"></span></h3>
           {{ page.abstract | markdownify }}
         {% endif %}
 
         {{ content }}
 
-        <h3 id="cite">BibTeX</h3>
+        <h3 class="mt-5" id="cite">BibTeX<span title="Go to top" class="back-to-top"></span></h3>
         {% capture bibtex %}{% include bibtex.html post=page %}{% endcapture %}
         {% capture bib_citekey %}{% include bibtex-citekey.html post=page %}{% endcapture %}
         <span copy-to-clipboard="true" download="{{ bib_citekey | strip }}.bib">
@@ -136,7 +137,7 @@ layout: default
         </span>
 
         {% if page.related %}
-          <h3>Related Work</h3>
+          <h3>Related Work<span title="Go to top" class="back-to-top"></span></h3>
           <ul>
           {% for publication in site.publications reversed %}
             {% if page.related contains publication.id %}     

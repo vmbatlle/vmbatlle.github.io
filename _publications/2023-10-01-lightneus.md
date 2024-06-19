@@ -14,11 +14,11 @@ authors:
   - tardos{1}
 notes:
   - "{1} Universidad de Zaragoza"
-  - "{2} Ecole Polytechnique Fédérale de Lausanne"
+  - "{2} École Polytechnique Fédérale de Lausanne"
 header:
   teaser: batlle23_lightneus.webp
   teaser_background: '#28252d'
-  og_image: batlle2023_lightneus-c1v1-comp.webp
+  og_image: batlle2023_lightneus-c1v1-comp.jpeg
 abstract:
   "We propose a new approach to 3D reconstruction from sequences of images acquired by monocular endoscopes. It is based on two key insights. First, endoluminal cavities are watertight, a property naturally enforced by modeling them in terms of a signed distance function. Second, the scene illumination is variable. It comes from the endoscope’s light sources and decays with the inverse of the squared distance to the surface. To exploit these insights, we build on NeuS [25], a neural implicit surface reconstruction technique with an outstanding capability to learn appearance and a SDF surface model from multiple views, but currently limited to scenes with static illumination. To remove this limitation and exploit the relation between pixel brightness and depth, we modify the NeuS architecture to explicitly account for it and introduce a calibrated photometric model of the endoscope’s camera and light source.
 
@@ -31,3 +31,7 @@ bibtex: inproceedings
 related:
   - /publications/photometric
 ---
+| Benefits of illumination decline  | Reconstructing partially observed regions |
+| :--- | :--- |
+| ![](/images/batlle2023_lightneus-c1v1-comp.jpeg) | ![](/images/batlle23_lightneus.webp) |
+| Result on the _"Cecum 1 a"_ sequence. **Top:** The NeuS reconstruction exhibits multiple artifacts that make it unusable. **Bottom:** Our reconstruction is much closer to the ground truth shape. | The watertight prior inherent to an SDF allows the network to hallucinate unseen areas. Remarkably, these unsurveyed areas continue the tubular shape of the colon behind the cameras. |

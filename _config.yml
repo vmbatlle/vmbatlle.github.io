@@ -21,7 +21,7 @@ repository               : "vmbatlle/vmbatlle.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=175"
+  avatar           : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=175
   name             : "Víctor Martínez Batlle"
   pronouns         : # "he/him"
   bio              : "PhD candidate in CV/ML at <a href='https://ropert.i3a.es'>ROPERT</a>, <a href='https://i3a.es'>I3A</a>, <a href='https://unizar.es'>Universidad de Zaragoza</a>"
@@ -110,6 +110,24 @@ staticman:
 atom_feed:
   hide                   : false     # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
+
+
+# Favicon settings
+favicon:
+  32x32                 : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=32
+  96x96                 : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=96
+  16x16                 : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=16
+  192x192               : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=192
+apple-touch-icon:
+  57x57                  : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=57
+  60x60                  : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=60
+  72x72                  : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=72
+  76x76                  : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=76
+  114x114                : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=114
+  120x120                : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=120
+  144x144                : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=144
+  152x152                : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=152
+  180x180                : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=180
 
 
 # SEO Related

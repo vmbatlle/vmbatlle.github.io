@@ -21,7 +21,7 @@ authors:
 notes:
   - "{*} Equal contribution"
   - "{1} Universidad de Zaragoza"
-  - "{2} Ecole Polytechnique Fédérale de Lausanne"
+  - "{2} École Polytechnique Fédérale de Lausanne"
 header:
   teaser: rodriguez23_lightdepth.gif
 abstract:
