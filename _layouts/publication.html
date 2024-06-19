@@ -19,9 +19,11 @@ layout: default
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.abstract %}<meta itemprop="description" content="{{ page.abstract | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
+    {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
 
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
@@ -66,7 +68,7 @@ layout: default
         {% endif %}
 
         {% if post.citation or post.bibtex %}
-        <a href="#cite" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-quote"></i> Cite</a>
+          <a href="#cite" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-quote"></i> Cite</a>
         {% endif %}
 
         {% if post.videourl %}
@@ -87,6 +89,11 @@ layout: default
           {% assign website = post.website %}
           <a href="{{ website }}" rel="permalink" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
         {% endif %}
+
+        {% if page.share %}
+          <a href="#share" id="share-page" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-share-fill"></i></a>
+        {% endif %}
+        
         </div>
         </header>
       {% endunless %}

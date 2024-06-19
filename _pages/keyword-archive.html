@@ -1,0 +1,29 @@
+---
+layout: archive
+permalink: /keywords/
+title: "Publications by Keywords"
+author_profile: true
+---
+
+{% include base_path %}
+{% include group-by-array collection=site.publications field="keywords" %}
+
+<div class="accordion mt-4" id="accordionKeywords">
+{% for keyword in group_names %}
+  {% assign posts = group_items[forloop.index0] %}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ keyword | slugify }}" aria-expanded="false" aria-controls="{{ keyword | slugify }}">
+        {{ keyword }}
+      </button>
+    </h2>
+    <div id="{{ keyword | slugify }}" class="accordion-collapse collapse" data-bs-parent="#accordionKeywords">
+      <div class="accordion-body">
+      {% for post in posts %}
+        {% include archive-single.html %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>

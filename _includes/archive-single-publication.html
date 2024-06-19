@@ -6,6 +6,12 @@
   {% assign teaser = site.teaser %}
 {% endif %}
 
+{% if post.header.teaser_background %}
+  {% capture teaser_background %}{{ post.header.teaser_background }}{% endcapture %}
+{% else %}
+  {% assign teaser_background = site.teaser_background %}
+{% endif %}
+
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>"  | strip %}
 {% else %}
@@ -28,7 +34,7 @@
     {% else %}
       <div class="d-none d-md-inline col-md-4">
       {% if teaser %}
-        <img class="img-thumbnail p-2" src=
+        <img class="img-thumbnail p-2" style="background: {{ teaser_background | default: inherit }}" src=
         {% if teaser contains "://" %}
           "{{ teaser }}"
         {% else %}

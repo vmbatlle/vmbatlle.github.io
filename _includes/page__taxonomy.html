@@ -1,5 +1,9 @@
 {% include base_path %}
 
+{% if site.keyword_archive.type and page.keywords[0] %}
+  {% include keyword-list.html %}
+{% endif %}
+
 {% if site.tag_archive.type and page.tags[0] %}
   {% include tag-list.html %}
 {% endif %}

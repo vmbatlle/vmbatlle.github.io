@@ -14,5 +14,12 @@ header:
   teaser: batlle22_photometric.gif
 abstract:
   "Visual SLAM inside the human body will open the way to computer-assisted navigation in endoscopy. However, due to space limitations, medical endoscopes only provide monocular images, leading to systems lacking true scale. In this paper, we exploit the controlled lighting in colonoscopy to achieve the first in-vivo 3D reconstruction of the human colon using photometric stereo on a calibrated monocular endoscope. Our method works in a real medical environment, providing both a suitable in-place calibration procedure and a depth estimation technique adapted to the colon's tubular geometry. We validate our method on simulated colonoscopies, obtaining a mean error of 7% on depth estimation, which is below 3 mm on average. Our qualitative results on the EndoMapper dataset show that the method is able to correctly estimate the colon shape in real human colonoscopies, paving the ground for truescale monocular SLAM in endoscopy."
+keywords: 
+  - 3D Reconstruction
+  - Illumination Decline
+  - Endoscopy
+  - Depth Estimation
 bibtex: inproceedings
+related:
+  - /publications/endomapper
 ---

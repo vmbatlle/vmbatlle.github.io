@@ -139,4 +139,18 @@ $(document).ready(function(){
     };
   });
 
+  $("#share-page").on("click", function( event ){
+    if (navigator.share) {
+      event.preventDefault();
+      navigator.share({
+        title: document.title,
+        url: location.href
+      }).catch(console.error);
+    }
+  });
+
+  if(location.hash != null && location.hash != ""){
+    $(location.hash + '.collapse').collapse('show');
+  }
+
 });

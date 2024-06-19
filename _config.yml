@@ -292,6 +292,9 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+keyword_archive:
+  type: liquid
+  path: /keywords/
 # https://github.com/jekyll/jekyll-archives
 # jekyll-archives:
 #   enabled:
