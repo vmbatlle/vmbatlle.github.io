@@ -1,9 +1,7 @@
 /* ==========================================================================
    SINGLE PAGE/POST
    ========================================================================== */
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+
 
 #main {
   @include container;
@@ -101,9 +99,10 @@
     border: 0px;
     margin: auto;
     max-width: 90vw;
+    margin-bottom: 1.3em;
 
     img {
-      margin-bottom: 1em;
+      margin-bottom: 1.3em;
     }
 
     thead { 
@@ -111,27 +110,42 @@
     }
 
     tbody {
-      @include make-container();
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 0;
+      width: 100%;
+      padding-right: calc(var(--bs-gutter-x)* .5);
+      padding-left: calc(var(--bs-gutter-x)* .5);
+      margin-right: auto;
+      margin-left: auto;
     }
 
     tr {
-      @include make-row();
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: calc(-1* var(--bs-gutter-y));
+      margin-right: calc(-.5* var(--bs-gutter-x));
+      margin-left: calc(-.5* var(--bs-gutter-x));
       justify-content: center;
     }
 
     td {
-      @include make-col-ready();
+      padding-right: calc(var(--bs-gutter-x)* .5);
+      padding-left: calc(var(--bs-gutter-x)* .5);
+      margin-top: var(--bs-gutter-y);
       max-width: 75%;
+      flex: 0 0 auto;
       
       /* default */
-      @include make-col(3);
+      width: 25%;
 
       /* 1, 2 items - small screen */
       &:first-child:nth-last-child(1),
       &:first-child:nth-last-child(2),
       &:first-child:nth-last-child(1) ~ *,    
       &:first-child:nth-last-child(2) ~ *  {
-          @include make-col(12);
+        width: 100%;
       }
 
       /* 3, 4 items - small screen */
@@ -139,7 +153,7 @@
       &:first-child:nth-last-child(4),
       &:first-child:nth-last-child(3) ~ *,    
       &:first-child:nth-last-child(4) ~ *  {
-          @include make-col(6);
+        width: 50%;
       }
 
       /* 5, 6 items - small screen */
@@ -147,28 +161,28 @@
       &:first-child:nth-last-child(6),
       &:first-child:nth-last-child(5) ~ *,
       &:first-child:nth-last-child(6) ~ * {
-        @include make-col(4);
+        width: 33%;
       }
 
-      @include media-breakpoint-up(sm) {
+      @media (min-width: 576px) {
         /* 2 items */
         &:first-child:nth-last-child(2),
         &:first-child:nth-last-child(2) ~ * {
-          @include make-col(6);
+          width: 50%;
         }
       }
 
-      @include media-breakpoint-up(md) {
+      @media (min-width: 768px) {
         /* 3 items */
         &:first-child:nth-last-child(3),
         &:first-child:nth-last-child(3) ~ * {
-          @include make-col(4);
+          width: 33%;
         }
 
         /* 4 items */
         &:first-child:nth-last-child(4),
         &:first-child:nth-last-child(4) ~ * {
-          @include make-col(4);
+          width: 33%;
         }
         &:first-child:nth-last-child(4),
         &:first-child:nth-last-child(4) ~ *:nth-child(3) {
