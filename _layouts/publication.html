@@ -28,7 +28,7 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h1 class="page__title text-center mb-4" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.title %}<h2 class="page__title text-center mb-4" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h2>{% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
@@ -37,19 +37,19 @@ layout: default
         {% endif %}
 
         {% if page.authors %}
-          <div class="page__authors authors h4 d-flex justify-content-around flex-wrap mb-3">
+          <div class="page__authors authors h6 d-flex justify-content-around flex-wrap mb-3">
           {% include authors-grid.html post=page show_notes=true %}
           </div>
         {% endif %}
 
         {% if page.notes %}
-          <p class="page__author-notes d-flex justify-content-around flex-wrap mb-3">
+          <p class="small page__author-notes d-flex justify-content-around flex-wrap mb-3">
             {% include author-notes.html post=page %}
           </p>
         {% endif %}
         
         {% if page.venue and page.date %}
-          <p class="text-center">Published in <i>{{ page.venue }}</i><br>
+          <p class="small text-center">Published in <i>{{ page.venue }}</i><br>
             {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
@@ -81,6 +81,10 @@ layout: default
           {% unless post.videourl contains "://www.youtube.com" %}
             <a href="{{ post.videourl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
           {% endunless %}
+        {% endif %}
+
+        {% if post.posterurl %}
+          <a href="{{ post.posterurl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">Poster</a>
         {% endif %}
 
         {% if post.slidesurl %}

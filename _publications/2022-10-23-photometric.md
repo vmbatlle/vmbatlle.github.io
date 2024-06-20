@@ -5,6 +5,7 @@ date: 2022-10-23
 doi: 'https://doi.org/10.1109/IROS47612.2022.9981742'
 venue: 'IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)'
 videourl: 'https://www.youtube.com/watch?v=zlls1mVsFA0'
+slidesurl: '/files/batlle22_photometric_slides.pdf'
 arxiv: '2204.09083'
 authors: 
   - vmbatlle
@@ -23,3 +24,15 @@ bibtex: inproceedings
 related:
   - /publications/endomapper
 ---
+
+### Presentation
+
+<div class="mb-4 google-drive-video--16-9">
+<iframe src="https://drive.google.com/file/d/1XO8d_3MO7rbSbb8ARlSYDNhev2c_WFE_/preview" allow="autoplay"></iframe>
+</div>
+
+
+<div class="d-block text-center">
+<a href="/files/batlle22_photometric_slides.pdf" class="btn btn-outline-secondary"><i class="bi bi-cloud-download"></i> Download .PDF</a>
+<a href="https://drive.google.com/uc?export=download&id=1EVn-ea251FzEcwADXSg40In1ZORhUw1Y" class="btn btn-outline-secondary"><i class="bi bi-cloud-download"></i> Download .PPTX</a>
+</div>

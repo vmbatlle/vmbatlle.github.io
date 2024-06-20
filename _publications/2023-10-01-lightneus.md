@@ -6,6 +6,7 @@ date: 2023-10-01
 doi: 'https://doi.org/10.1007/978-3-031-43999-5_48'
 venue: 'Medical Image Computing and Computer Assisted Intervention (MICCAI)'
 videourl: 'https://www.youtube.com/watch?v=YnyUutpGGg4'
+posterurl: '/files/batlle23_lightneus_poster.pdf'
 arxiv: '2309.02777'
 authors: 
   - vmbatlle{1}
@@ -31,7 +32,5 @@ bibtex: inproceedings
 related:
   - /publications/photometric
 ---
-| Benefits of illumination decline  | Reconstructing partially observed regions |
-| :--- | :--- |
-| ![](/images/batlle2023_lightneus-c1v1-comp.jpeg) | ![](/images/batlle23_lightneus.webp) |
-| Result on the _"Cecum 1 a"_ sequence. **Top:** The NeuS reconstruction exhibits multiple artifacts that make it unusable. **Bottom:** Our reconstruction is much closer to the ground truth shape. | The watertight prior inherent to an SDF allows the network to hallucinate unseen areas. Remarkably, these unsurveyed areas continue the tubular shape of the colon behind the cameras. |
+
+| ![](/images/batlle2023_lightneus-c1v1-comp.webp) **Reconstructing partially observed regions.** The watertight prior inherent to an SDF allows the network to hallucinate unseen areas. Remarkably, these unsurveyed areas continue the tubular shape of the colon behind the cameras. | ![](/images/batlle23_lightneus.webp) **Benefits of illumination decline.** Result on the _"Cecum 1 a"_ sequence. **Top:** The NeuS reconstruction exhibits multiple artifacts that make it unusable. **Bottom:** Our reconstruction is much closer to the ground truth shape. |

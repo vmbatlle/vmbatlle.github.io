@@ -122,6 +122,17 @@ a {
   }
 }
 
+body {
+  a {
+    color: $link-color;
+  }
+
+  a:hover,
+  a:active {
+    color: $link-color-hover;
+  }
+}
+
 /* code */
 
 tt, code, kbd, samp, pre {

@@ -1,0 +1,58 @@
+/* ==========================================================================
+   EMBED VIDEOS
+   ========================================================================== */
+
+
+.google-drive-video {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  &--16-9 {
+    @extend .google-drive-video;
+    padding-bottom: 56.25%;
+  }
+
+  &--4-3 {
+    @extend .google-drive-video;
+    padding-bottom: 75%;
+  }
+
+  &--3-2 {
+    @extend .google-drive-video;
+    padding-bottom: 66.66%;
+  }
+
+  &--8-5 {
+    @extend .google-drive-video;
+    padding-bottom: 62.5%;
+  }
+
+  &--1-1 {
+    @extend .google-drive-video;
+    padding-bottom: 100%;
+  }
+
+  &--9-16 {
+    @extend .google-drive-video;
+    padding-bottom: 177.77%;
+  }
+
+  &--3-4 {
+    @extend .google-drive-video;
+    padding-bottom: 133.33%;
+  }
+
+  &--2-3 {
+    @extend .google-drive-video;
+    padding-bottom: 150%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

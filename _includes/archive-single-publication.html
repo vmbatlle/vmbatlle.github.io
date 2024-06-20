@@ -86,7 +86,7 @@
     <p class="archive__item-excerpt" itemprop="description"></p>
     <div id="collapse/parent/{{post.id}}">
     {% if post.abstract %}
-      <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse"
+      <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse"
         data-bs-target="#collapse/abstract/{{post.id}}" 
         aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
         Abstract
@@ -120,14 +120,14 @@
           <a href="{{ post.videourl }}" class="btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
       {% endif %}
     {% endif %}
-    {% if post.slidesurl %}
-      <a href="{{ post.slidesurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none">Slides</a>
-    {% endif %}
     {% if post.codeurl %}
       <a href="{{ post.codeurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
     {% endif %}
     {% if post.website %}
       <a href="{{ post.website }}" rel="permalink" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
+    {% endif %}
+    {% if post.slidesurl or post.suppurl or post.posterurl %}
+      <a href="{{ base_path }}{{ post.url }}" title="More links" alt="More links" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-three-dots"></i></a>
     {% endif %}
     {% if post.abstract %}
       <div class="collapse" id="collapse/abstract/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
