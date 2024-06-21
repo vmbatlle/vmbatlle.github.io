@@ -1,15 +1,17 @@
 {% include base_path %}
 
-{% if post.header.teaser %}
-  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% if post.thumbnail.image %}
+  {% capture thumbnail %}{{ post.thumbnail.image }}{% endcapture %}
+{% elsif post.header.teaser %}
+  {% capture thumbnail %}{{ post.header.teaser }}{% endcapture %}
 {% else %}
-  {% assign teaser = site.teaser %}
+  {% assign thumbnail = site.teaser %}
 {% endif %}
 
-{% if post.header.teaser_background %}
-  {% capture teaser_background %}{{ post.header.teaser_background }}{% endcapture %}
+{% if post.thumbnail.background %}
+  {% capture thumbnail_background %}{{ post.thumbnail.background }}{% endcapture %}
 {% else %}
-  {% assign teaser_background = site.teaser_background %}
+  {% assign thumbnail_background = site.thumbnail_background %}
 {% endif %}
 
 {% if post.id %}
@@ -21,24 +23,24 @@
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
   <div class="row p-3">
-    {% if include.type == "grid" and teaser %}
+    {% if include.type == "grid" and thumbnail %}
       <div class="archive__item-teaser">
         <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
+          {% if thumbnail contains "://" %}
+            "{{ thumbnail }}"
           {% else %}
-            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+            "{{ thumbnail | prepend: "/images/" | prepend: base_path }}"
           {% endif %}
           alt="Teaser for {{ title }}">
       </div>
     {% else %}
       <div class="d-none d-md-inline col-md-4">
-      {% if teaser %}
-        <img class="img-thumbnail p-2" style="background: {{ teaser_background | default: inherit }}" src=
-        {% if teaser contains "://" %}
-          "{{ teaser }}"
+      {% if thumbnail %}
+        <img class="img-thumbnail p-2" style="background: {{ thumbnail_background | default: default }}" src=
+        {% if thumbnail contains "://" %}
+          "{{ thumbnail }}"
         {% else %}
-          "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+          "{{ thumbnail | prepend: "/images/" | prepend: base_path }}"
         {% endif %}
         alt="">
       {% elsif post.videourl contains "://www.youtube.com" %}
@@ -99,68 +101,20 @@
         <a href="{{ post.doi }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-lock-fill text-danger"></i> PDF</a>
       {% endif %}
       {% if post.arxiv %}
-        <a href=" https://arxiv.org/abs/{{ post.arxiv }} " class="btn btn-outline-secondary btn-sm text-decoration-none">ArXiv</a>
-      {% endif %}
-    {% endif %}
-    {% if post.citation or post.bibtex %}
-      <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" 
-        data-bs-target="#collapse/citation/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}" 
-        aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
-        <i class="bi bi-quote"></i> Cite
-      </button>
-    {% endif %}
-    {% if post.videourl %}
-      {% if post.videourl contains "://www.youtube.com" %}
-      <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" 
-          data-bs-target="#collapse/video/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}" 
-          aria-expanded="false" aria-controls="collapse/abstract/{{post.id}}">
-        Video
-      </button>
-      {% else %}
-          <a href="{{ post.videourl }}" class="btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
+        <a href=" https://arxiv.org/abs/{{ post.arxiv }} " class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="ai ai-arxiv"></i> arXiv</a>
       {% endif %}
     {% endif %}
     {% if post.codeurl %}
       <a href="{{ post.codeurl }}" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
     {% endif %}
     {% if post.website %}
-      <a href="{{ post.website }}" rel="permalink" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
-    {% endif %}
-    {% if post.slidesurl or post.suppurl or post.posterurl %}
-      <a href="{{ base_path }}{{ post.url }}" title="More links" alt="More links" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-three-dots"></i></a>
+      <a href="{{ post.website }}" rel="permalink" class="btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Project page</a>
     {% endif %}
     {% if post.abstract %}
       <div class="collapse" id="collapse/abstract/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
         <div class="card card-body">
           <small>
             {{ post.abstract | markdownify }}
-          </small>
-        </div>
-      </div>
-    {% endif %}
-    {% if post.citation or post.bibtex %}
-      <div class="collapse" id="collapse/citation/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
-        <div class="card card-body">
-          {% if post.citation %}
-            <small class="font-monospace" style="font-size: 0.75em;">
-              {{ post.citation | markdownify }}
-            </small>
-          {% else %}
-            {% capture bibtex %}{% include bibtex.html post=post %}{% endcapture %}
-            {% capture bib_citekey %}{% include bibtex-citekey.html post=post %}{% endcapture %}
-            <span copy-to-clipboard="true" download="{{ bib_citekey | strip }}.bib">
-              {{ bibtex | markdownify }}
-            </span>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-    {% if post.videourl and post.videourl contains "://www.youtube.com" %}
-      {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
-      <div class="collapse" id="collapse/video/{{post.id}}" data-bs-parent="#collapse/parent/{{post.id}}">
-        <div class="card card-body">
-          <small class="font-monospace" style="font-size: 0.75em;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </small>
         </div>
       </div>

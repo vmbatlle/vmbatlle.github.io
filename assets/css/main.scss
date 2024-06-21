@@ -38,5 +38,12 @@
 @import "vendor/font-awesome/fontawesome";
 @import "vendor/font-awesome/solid";
 @import "vendor/font-awesome/brands";
+
+$fa-font-path: "../webfonts/fa5";
+$fa-css-prefix: fa5;
+@import "vendor/font-awesome-5/fontawesome";
+@import "vendor/font-awesome-5/solid";
+@import "vendor/font-awesome-5/brands";
+
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";

@@ -31,6 +31,8 @@ authors:
   - "Murillo, Ana C."
   - "Lanas, Angel"
   - josemari
+notes:
+  - "{} Universidad de Zaragoza"
 header:
   teaser: azagra23_endomapper.webp
 abstract:

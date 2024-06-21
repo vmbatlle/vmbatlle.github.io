@@ -1,0 +1,7 @@
+{%- assign extension = include.file | split: '.' | last | downcase | prepend: '.' -%}
+{% for type in site.data.mime-types %}
+  {%- if type[1] contains extension -%}
+    {{ type[0] }}
+    {%- break -%}
+  {%- endif -%}
+{% endfor %}

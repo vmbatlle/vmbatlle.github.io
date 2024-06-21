@@ -28,7 +28,7 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h2 class="page__title text-center mb-4" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h2>{% endif %}
+          {% if page.title %}<h1 class="page__title text-center mb-4" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
@@ -37,19 +37,19 @@ layout: default
         {% endif %}
 
         {% if page.authors %}
-          <div class="page__authors authors h6 d-flex justify-content-around flex-wrap mb-3">
+          <div class="page__authors authors fs-5 d-flex justify-content-around flex-wrap mb-3">
           {% include authors-grid.html post=page show_notes=true %}
           </div>
         {% endif %}
 
         {% if page.notes %}
-          <p class="small page__author-notes d-flex justify-content-around flex-wrap mb-3">
+          <p class="page__author-notes d-flex justify-content-around flex-wrap mb-3">
             {% include author-notes.html post=page %}
           </p>
         {% endif %}
         
         {% if page.venue and page.date %}
-          <p class="small text-center">Published in <i>{{ page.venue }}</i><br>
+          <p class="text-center">Published in <i>{{ page.venue }}</i><br>
             {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
@@ -57,73 +57,60 @@ layout: default
 
         {% assign btn_style = "mx-1" %}
 
-        <div class="d-flex justify-content-center">
-        {% if post.paperurl %}
-          <a href=" {{ post.paperurl }} " class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-unlock-fill text-success"></i> PDF</a>
-        {% elsif post.doi or post.arxiv %}
-          {% if post.doi %}
-            <a href="{{ post.doi }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-lock-fill text-danger"></i> PDF</a>
-          {% endif %}
-          {% if post.arxiv %}
-            <a href=" https://arxiv.org/abs/{{ post.arxiv }} " class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">ArXiv</a>
-          {% endif %}
-        {% endif %}
-
-        {% if post.suppurl %}
-          <a href=" {{ post.suppurl }} " class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-plus-lg"></i> Supp</a>
-        {% endif %}
-
-        {% if post.citation or post.bibtex %}
-          <a href="#cite" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-quote"></i> Cite</a>
-        {% endif %}
-
-        {% if post.videourl %}
-          {% unless post.videourl contains "://www.youtube.com" %}
-            <a href="{{ post.videourl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none" target="_blank">Video <i class="bi bi-box-arrow-up-right"></i></a>
-          {% endunless %}
-        {% endif %}
-
-        {% if post.posterurl %}
-          <a href="{{ post.posterurl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">Poster</a>
-        {% endif %}
-
-        {% if post.slidesurl %}
-          <a href="{{ post.slidesurl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none">Slides</a>
-        {% endif %}
-
-        {% if post.codeurl %}
-          <a href="{{ post.codeurl }}" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-github"></i> Code</a>
-        {% endif %}
-
-        {% if post.website %}
-          {% assign website = post.website %}
-          <a href="{{ website }}" rel="permalink" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-globe2"></i> Website</a>
-        {% endif %}
-
-        {% if page.share %}
-          <button id="share-page" class="{{ btn_style }} btn btn-outline-secondary btn-sm text-decoration-none"><i class="bi bi-share-fill"></i></a>
-        {% endif %}
-        
+        <div class="page__buttons">
+        {% if post.arxiv %}{% assign arxiv_abs = 'https://arxiv.org/abs/' | append: post.arxiv %}{% endif %}
+        {% if post.arxiv %}{% assign arxiv_pdf = 'https://arxiv.org/pdf/' | append: post.arxiv %}{% endif %}
+        {% assign max-buttons = post.max-buttons | minus: 1 %}
+        {% assign button-counter = 0 %}
+        {% include publication-button.html url=post.paperurl icon='fa5-file-pdf' text='Paper' max-buttons=max-buttons %}
+        {% unless post.paperurl %}{% include publication-button.html url=arxiv_pdf icon='fa5-file-pdf' text='Paper' max-buttons=max-buttons %}{% endunless %}
+        {% include publication-button.html url=arxiv_abs icon='ai-arxiv' text='arXiv' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.website icon='bi-globe2' text='Project page' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.codeurl icon='bi-github' text='Code' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.videourl icon='bi-youtube' text='Video' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.suppurl icon='fa5-file-pdf' text='Supp' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.posterurl icon='bi-image' text='Poster' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.slidesurl icon='bi-image' text='Slides' max-buttons=max-buttons %}
+        {% include publication-button.html url='#cite' icon='bi-quote' text='BibTeX' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.doi icon='ai-doi' text='DOI' max-buttons=max-buttons %}
+        {% if button-counter > 4 %}</span>{% endif %}
+        {% include publication-button.html url='#' id='share-page' icon='bi-share-fill' text='Share' %}
         </div>
         </header>
       {% endunless %}
 
       <section class="page__content" itemprop="text">
 
-        {% if post.videourl and post.videourl contains "://www.youtube.com" %}
-          {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
-          <div class="mt-5">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        {% elsif post.header.teaser %}
-          <img src=
-          {% if post.header.teaser contains "://" %}
-            "{{ post.header.teaser }}"
-          {% else %}
-            "{{ post.header.teaser | prepend: "/images/" | prepend: base_path }}"
+        {% assign teaser_background = nil %}
+        {% if post.header.teaser %}
+          {% assign teaser = post.header.teaser %}
+        {% elsif post.thumbnail.image %}
+          {% assign teaser = post.thumbnail.image %}
+          {% if post.thumbnail.background %}
+            {% assign teaser_background = post.thumbnail.background %}
           {% endif %}
-          class="mt-5"
-          alt="Teaser for {{ post.title }}">
+        {% else %}
+          {% assign teaser = nil %}
+        {% endif %}
+        {% if teaser %}
+          <div class="page__teaser">
+            {% unless teaser contains "://" %}
+              {% assign teaser = teaser | prepend: "/images/" | prepend: base_path %}
+            {% endunless %}
+            {% capture teaser_type %}{% include mime-type.html file=teaser %}{% endcapture %}
+            {% if teaser_type contains "image/" %}
+              <img src="{{ teaser }}"
+              style="background: {{ teaser_background | default: 'default' }};"
+              alt="Teaser for {{ post.title }}">
+            {% elsif teaser_type contains "video/" %}
+              <video width="100%" autoplay="" loop="" muted="" controls="">
+                <source src="{{ teaser }}" type="{{ teaser_type }}">
+                Your browser does not support the video tag.
+              </video>
+            {% else %}
+              <div class="page__teaser-content">{{ teaser | markdownify }}</div>
+            {% endif %}
+          </div>
         {% endif %}
 
         {% if page.abstract %}
@@ -132,6 +119,14 @@ layout: default
         {% endif %}
 
         {{ content }}
+
+        {% if post.videourl and post.videourl contains "://www.youtube.com" %}
+          <h3 class="mt-5">Overview Video<span title="Go to top" class="back-to-top"></span></h3>
+          {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
+          <div class="">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        {% endif %}
 
         <h3 class="mt-5" id="cite">BibTeX<span title="Go to top" class="back-to-top"></span></h3>
         {% capture bibtex %}{% include bibtex.html post=page %}{% endcapture %}

@@ -1,0 +1,18 @@
+image/bmp: .bmp
+image/gif: .gif
+image/jpeg: .jpeg .jpg
+image/png: .png
+image/svg+xml: .svg .svgz
+image/tiff: .tif .tiff
+image/webp: .webp
+image/x-icon: .ico
+video/mp4: .mp4, .mp4v, .mpg4
+video/mpeg: .m1v, .m2v, .mpa, .mpe, .mpeg, .mpg
+video/quicktime: .mov, .qt
+video/vnd.mpegurl: .m4u, .mxu
+video/webm: .webm
+video/x-flv: .flv
+video/x-m4v: .m4v
+video/x-matroska: .mkv
+video/x-msvideo: .avi
+video/x-sgi-movie: .movie

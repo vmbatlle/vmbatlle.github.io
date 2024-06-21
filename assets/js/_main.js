@@ -144,8 +144,8 @@ $(document).ready(function(){
   });
 
   $("#share-page").on("click", function( event ){
+    event.preventDefault();
     if (navigator.share) {
-      event.preventDefault();
       navigator.share({
         title: document.title,
         url: location.href

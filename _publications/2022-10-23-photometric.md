@@ -11,6 +11,8 @@ authors:
   - vmbatlle
   - josemari
   - tardos
+notes:
+  - "{} Universidad de Zaragoza"
 header:
   teaser: batlle22_photometric.gif
 abstract:
@@ -33,6 +35,6 @@ related:
 
 
 <div class="d-block text-center">
-<a href="/files/batlle22_photometric_slides.pdf" class="btn btn-outline-secondary"><i class="bi bi-cloud-download"></i> Download .PDF</a>
-<a href="https://drive.google.com/uc?export=download&id=1EVn-ea251FzEcwADXSg40In1ZORhUw1Y" class="btn btn-outline-secondary"><i class="bi bi-cloud-download"></i> Download .PPTX</a>
+<a href="/files/batlle22_photometric_slides.pdf" class="btn btn-outline-secondary"><i class="bi bi-download"></i>&nbsp;&nbsp;Download .PDF</a>
+<a href="https://drive.google.com/uc?export=download&id=1EVn-ea251FzEcwADXSg40In1ZORhUw1Y" class="btn btn-outline-secondary"><i class="bi bi-download"></i>&nbsp;&nbsp;Download .PPTX</a>
 </div>
