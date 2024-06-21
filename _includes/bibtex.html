@@ -2,16 +2,9 @@
 {% assign types = "article,book,booklet,conference,inbook,incollection,inproceedings,manual,mastersthesis,misc,phdthesis,proceedings,techreport,unpublished" | split: "," %}
 {% assign type = post.bibtex | downcase | strip %}
 {% if types contains type %}
-    {% if site.data.authors contains post.authors[0] %}
-        {% assign author_id = post.authors[0] %}
-        {% assign author = site.data.authors[author_id] %}
-        {% assign author_name = author.name %}
-    {% else %}
-        {% assign author_name = post.authors[0] %}
-    {% endif %}
 
     {% capture bib_title %}{{ post.title }}{% endcapture %}
-    {% capture bib_authors %}{% for author in post.authors %}{% if site.data.authors contains author %}{{ site.data.authors[author].name }}{% else %}{{ author }}{% endif %}{% unless forloop.last %} and {% endunless %}{% endfor %}{% endcapture %}
+    {% capture bib_authors %}{% for _author in post.authors %}{% assign author = _author | split: '{' | first %}{% if site.data.authors contains author %}{{ site.data.authors[author].name }}{% else %}{{ author }}{% endif %}{% unless forloop.last %} and {% endunless %}{% endfor %}{% endcapture %}
     {% capture bib_a %}{% raw %}{\\'a}{% endraw %}{% endcapture %}
     {% capture bib_e %}{% raw %}{\\'e}{% endraw %}{% endcapture %}
     {% capture bib_i %}{% raw %}{\\'i}{% endraw %}{% endcapture %}
@@ -36,19 +29,21 @@
 
     {% assign year = post.date | date: "%Y" %}
     {% capture bib_citekey %}{% include bibtex-citekey.html post=post %}{% endcapture %}
-    @{{type}}{ {{ bib_citekey | strip }},
-        title = { {{ bib_title }} },
-        author = { {{ bib_authors }} },{% if type == "article" %}
-        journal = { {{ post.venue }} },
-        volume = { {{ post.volume }} },
-        number = { {{ post.number }} },{% else %}
-        booktitle = { {{ post.venue }} },{% endif %}{% if post.pages %}
-        pages = { {{ post.pages | replace: "--", "-" | replace: "-", "--" }} },{% endif %}
-        year = { {{year}} },{% if post.sn %}
-        issn = { {{ post.sn }} },{% endif %}{% if post.doi %}
-        doi = { {{ post.doi }} },{% endif %}{% if post.publisher %}
-        publisher = { {{ post.publisher }} },{% endif %}
-    }
+    {% assign _begin = "{" %}
+    {% assign _end = "}" %}
+    @{{type}}{{ _begin }}{{ bib_citekey | strip }},
+        title = {{ _begin }}{{ bib_title }}{{ _end }},
+        author = {{ _begin }}{{ bib_authors }}{{ _end }},{% if type == "article" %}
+        journal = {{ _begin }}{{ post.venue }}{{ _end }},
+        volume = {{ _begin }}{{ post.volume }}{{ _end }},
+        number = {{ _begin }}{{ post.number }}{{ _end }},{% else %}
+        booktitle = {{ _begin }}{{ post.venue }}{{ _end }},{% endif %}{% if post.pages %}
+        pages = {{ _begin }}{{ post.pages | replace: "--", "-" | replace: "-", "--" }}{{ _end }},{% endif %}
+        year = {{ _begin }}{{year}}{{ _end }},{% if post.sn %}
+        issn = {{ _begin }}{{ post.sn }}{{ _end }},{% endif %}{% if post.doi %}
+        doi = {{ _begin }}{{ post.doi }}{{ _end }},{% endif %}{% if post.publisher %}
+        publisher = {{ _begin }}{{ post.publisher }}{{ _end }},{% endif %}
+    {{ _end }}
 {% else %}
     {{ post.bibtex }}
 {% endif %}
