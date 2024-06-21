@@ -117,6 +117,8 @@ $(document).ready(function(){
         tooltip.setContent({ '.tooltip-inner': 'Copied' });
         $btnCopy.addClass("copied");
         window.setTimeout(function(){
+          $btnCopy.unbind("hover");
+          tooltip.hide();
           tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
           $btnCopy.removeClass("copied");
         }, 2000);
