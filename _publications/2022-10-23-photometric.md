@@ -2,6 +2,7 @@
 title: "Photometric single-view dense 3D reconstruction in endoscopy"
 collection: publications
 date: 2022-10-23
+last_modified_at: 2024-06-26
 doi: 'https://doi.org/10.1109/IROS47612.2022.9981742'
 venue: 'IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)'
 videourl: 'https://www.youtube.com/watch?v=zlls1mVsFA0'

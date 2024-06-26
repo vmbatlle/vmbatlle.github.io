@@ -3,6 +3,7 @@ title: "LightNeuS: Neural Surface Reconstruction in Endoscopy Using Illumination
 collection: publications
 permalink: /publications/lightneus
 date: 2023-10-01
+last_modified_at: 2024-06-26
 doi: 'https://doi.org/10.1007/978-3-031-43999-5_48'
 venue: 'Medical Image Computing and Computer Assisted Intervention (MICCAI)'
 videourl: 'https://www.youtube.com/watch?v=YnyUutpGGg4'

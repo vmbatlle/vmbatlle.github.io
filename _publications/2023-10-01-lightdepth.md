@@ -2,6 +2,7 @@
 title: "LightDepth: Single-View Depth Self-Supervision from Illumination Decline"
 collection: publications
 date: 2023-10-01
+last_modified_at: 2024-06-26
 doi: 'https://doi.org/10.1109/ICCV51070.2023.01945'
 venue: 'IEEE/CVF International Conference on Computer Vision (ICCV)'
 pages: 21273-21283

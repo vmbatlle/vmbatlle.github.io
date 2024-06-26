@@ -2,6 +2,7 @@
 title: "Endomapper dataset of complete calibrated endoscopy procedures"
 collection: publications
 date: 2023-10-03
+last_modified_at: 2024-06-26
 doi: 'https://doi.org/10.1038/s41597-023-02564-7'
 venue: 'Scientific Data'
 volume: 10
