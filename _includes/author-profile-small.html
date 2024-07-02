@@ -1,5 +1,5 @@
-<div class="d-flex d-lg-none p-3">
-    <div class="" style="max-width: 145px;">
+<div class="row justify-content-center">
+    <div class="col-12 m-2" style="max-width: 175px;">
         {% if author.avatar contains "://" %}
             {% capture avatar %}{{ author.avatar }}{% endcapture %}
         {% else %}
@@ -7,8 +7,8 @@
         {% endif %}
         <img src="{{ avatar }}" alt="{{ author.name }}" class="rounded-circle p-1 border border-1">
     </div>
-    <div class="px-4 align-self-center" style="max-width: 300px;">
-        <div class="row">
+    <div class="col-12 align-self-center" style="max-width: 300px;">
+        <div class="row text-center">
             <span class="h5 mb-1">{{ author.name }}</span>
             <small class="mb-2">{{ author.bio }}</small>
         </div>
