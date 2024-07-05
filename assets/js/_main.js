@@ -163,3 +163,37 @@ $(document).ready(function(){
   }
 
 });
+
+
+window.onload = function() {
+  // Create a favicon with a circular mask
+  var icons = document.querySelectorAll("link[rel~='icon']");
+  var apple_touch_icons = document.querySelectorAll("link[rel~='apple-touch-icon']");
+  var favicons = Array.from(icons).concat(Array.from(apple_touch_icons));
+  if (favicons.length === 0) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
+      favicons = [favicon];
+  }
+
+  var canvas = document.createElement('canvas');
+  var context = canvas.getContext('2d');
+  
+  favicons.forEach(favicon => {
+    var img = document.createElement('img');
+    img.onload = () => {
+      faviconSize = img.width;
+      canvas.width = faviconSize;
+      canvas.height = faviconSize;
+      context.beginPath();
+      context.arc( faviconSize / 2, faviconSize / 2, faviconSize / 2, 0, 2*Math.PI);
+      context.closePath();
+      context.clip();
+      context.drawImage(img, 0, 0, faviconSize, faviconSize);
+      favicon.href = canvas.toDataURL('image/png');
+    };
+    img.crossOrigin = 'Anonymous';
+    img.src = favicon.href;
+  });
+};
