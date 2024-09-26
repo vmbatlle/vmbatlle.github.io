@@ -1,5 +1,5 @@
 ---
-title: "LightNeuS: Neural Surface Reconstruction in Endoscopy Using Illumination Decline"
+title: "{LightNeuS}: Neural Surface Reconstruction in Endoscopy Using Illumination Decline"
 collection: publications
 permalink: /publications/lightneus
 date: 2023-10-01

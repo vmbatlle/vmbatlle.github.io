@@ -1,10 +1,10 @@
 {% assign post = include.post %}
-{% if site.data.authors contains post.authors[0] %}
-    {% assign author_id = post.authors[0] %}
+{% assign author_id = post.authors[0] | split: '{' | first %}
+{% if site.data.authors contains author_id %}
     {% assign author = site.data.authors[author_id] %}
     {% assign author_name = author.name %}
 {% else %}
-    {% assign author_name = post.authors[0] %}
+    {% assign author_name = author_id %}
 {% endif %}
 {% assign author_last = author_name | split: ", " | first %}
 {% assign author_last = author_last | slugify: "latin" | split: "-" | first | downcase %}

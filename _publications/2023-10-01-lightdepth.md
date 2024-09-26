@@ -1,5 +1,5 @@
 ---
-title: "LightDepth: Single-View Depth Self-Supervision from Illumination Decline"
+title: "{LightDepth}: Single-View Depth Self-Supervision from Illumination Decline"
 collection: publications
 date: 2023-10-01
 last_modified_at: 2024-06-26
