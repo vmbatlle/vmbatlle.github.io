@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Teaching"
+title: "Teaching and Supervision"
 permalink: /teaching/
 author_profile: true
 ---
@@ -10,14 +10,12 @@ author_profile: true
 {% assign num_theses = site.teaching | where_exp: "post", "post.type contains 'thesis'" | size %}
 {% assign num_courses = site.teaching | where_exp: "post", "post.type contains 'course'" | size %}
 
-<div class="">
-  <a href="#theses" class="btn btn-outline-secondary">Theses <span class="badge rounded-pill bg-secondary">{{ num_theses }}</span></a>
-  <a href="#courses" class="btn btn-outline-secondary">Courses <span class="badge rounded-pill bg-secondary">{{ num_courses }}</span></a>
+<div class="text-center">
+  <a href="#courses" class="btn btn-sm mx-1 btn-outline-dark">Teaching <span class="badge rounded-pill bg-dark">{{ num_courses }}</span></a>
+  <a href="#theses" class="btn btn-sm mx-1 btn-outline-dark">Supervision <span class="badge rounded-pill bg-dark">{{ num_theses }}</span></a>
 </div>
 
-<br>
-
-<h4 id="theses">Theses</h4>
+<h4 id="theses" class="mt-5">Supervision</h4>
 
 {% for post in site.teaching reversed %}
   {% if post.type contains "thesis" %}
@@ -25,7 +23,7 @@ author_profile: true
   {% endif %}
 {% endfor %}
 
-<h4 id="courses">Courses</h4>
+<h4 id="courses" class="mt-5">Teaching</h4>
 
 {% for post in site.teaching reversed %}
   {% if post.type contains "course" %}

@@ -1,0 +1,29 @@
+{%- if include.from -%}
+    {%- assign from=include.from -%}
+    {%- if include.to -%}
+        {%- assign to=include.to -%}
+    {%- else -%}
+        {%- assign to=include.from -%}
+    {%- endif -%}
+{%- else if include.to -%}
+    {%- assign from=include.to -%}
+    {%- assign to=include.to -%}
+{%- endif -%}
+{%- if include.format -%}
+    {%- assign from = from | date: include.format -%}
+    {%- assign to = to | date: include.format -%}
+{%- endif -%}
+{%- if from == to -%}
+    {%- assign from = '' -%}
+{%- endif -%}
+{%- assign from = from | split: " " | reverse -%}
+{%- assign to = to | split: " " | reverse -%}
+{%- for i in (0..from.size) -%}
+    {%- if from[i] != to[i] -%}
+        {%- assign from = from | slice: i, from.size - i  -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- assign from = from | reverse | join: ' ' -%}
+{%- assign to = to | reverse | join: ' ' -%}
+{%- if from != '' -%}{{from}}&nbsp;&ndash;&nbsp;{%- endif -%}{{ to }}

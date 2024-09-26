@@ -1,0 +1,30 @@
+{% assign reviews = site.data.research | where_exp: "item", "item.type == 'review'" %}
+{% if reviews.size > 0 %}
+
+## Peer review
+
+{% capture types %}
+journal,Journals
+conference,Conferences
+phd,PhD Theses
+{% endcapture %}
+
+{%- assign types = types | strip | newline_to_br | strip_newlines | split: "<br />" -%}
+{%- for type_name in types -%}
+{%- assign type = type_name | split>: "," | first -%}
+{%- assign name = type_name | split>: "," | last -%}
+{% assign exp = "item." | append: type %}
+{% assign items = reviews | where_exp: "item", exp %}
+
+{% if items.size > 0%}
+#### {{ name }}
+{% endif %}
+
+{% for review in items %}
+  - {{ review[type] }}. **{{ review.years | sort | reverse | join: ", " }}**.
+{%- endfor -%}
+{% endfor %}
+
+<br>
+
+{% endif %}

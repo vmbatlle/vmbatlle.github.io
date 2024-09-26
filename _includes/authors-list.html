@@ -1,23 +1,31 @@
-{% assign post = include.post %}
-{% assign max_authors = include.max_authors | default: 10 %}
-{% assign num_authors = post.authors.size %}
-{% if num_authors > max_authors %}
-  {% assign authors = post.authors | first %}
-  {% assign appendix = " et al." %}
-  {% assign num_authors = 1 %}
-{% else %}
-  {% assign authors = post.authors %}
-{% endif %}
-{% for author_id in authors %}
-  {% assign remaining_authors = num_authors | minus: forloop.index %}
-  {% if remaining_authors > 1 %}
-    {% assign appendix = ", " %}
-  {% elsif remaining_authors == 1 %}
-    {% assign appendix = " and " %}
-  {% elsif num_authors > 1 %}
-    {% assign appendix = "." %}
-  {% endif %}
-  <span class="text-nowrap">
-    {% include author-badge.html author=author_id %}{{ appendix }}
-  </span>
-{% endfor %}
+{%- assign post = include.post -%}
+{%- assign max_authors = include.max_authors | default: 10 -%}
+{%- assign num_authors = post.authors.size -%}
+{%- assign format = include.format | default: "badge" -%}
+{%- assign list_join = include.join | default: "," -%}
+{%- if num_authors > max_authors -%}
+  {%- assign authors = post.authors | first -%}
+  {%- assign appendix = " et al." -%}
+  {%- assign num_authors = 1 -%}
+{%- else -%}
+  {%- assign authors = post.authors -%}
+{%- endif -%}
+{%- for author_id in authors -%}
+  {%- assign remaining_authors = num_authors | minus: forloop.index -%}
+  {%- if remaining_authors > 1 -%}
+    {%- assign appendix = list_join | append: " " -%}
+  {%- elsif remaining_authors == 1 -%}
+    {%- assign appendix = " and " -%}
+  {%- elsif num_authors > 1 -%}
+    {%- assign appendix = "." -%}
+  {%- endif -%}
+  {%- case format -%}
+    {%- when "plain" -%}
+      {%- include author-badge.html author=author_id format=format -%}{{ appendix }}
+    {%- when "badge" -%}
+    <span class="text-nowrap">
+      {%- include author-badge.html author=author_id format=format -%}{{ appendix }}
+    </span>
+  {%- endcase -%}
+  
+{%- endfor -%}

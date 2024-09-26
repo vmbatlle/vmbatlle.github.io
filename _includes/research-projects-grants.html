@@ -1,0 +1,35 @@
+{% capture types %}
+project,Research projects
+grant,Research grants
+{% endcapture %}
+
+{%- assign types = types | strip | newline_to_br | strip_newlines | split: "<br />" -%}
+{%- assign first_time = true -%}
+{%- for type_name in types -%}
+{%- assign type = type_name | split>: "," | first -%}
+{%- assign name = type_name | split>: "," | last -%}
+
+{% if first_time %}
+{%- assign first_time = false -%}
+## Projects and grants
+{% endif %}
+
+#### {{ name }}
+
+<div class="container mb-5">
+  <div class="row row-cols-1">
+  {% assign research_stays = site.data.research | where_exp: "item", "item.type == type" | sort: "start_date" | reverse %}
+  {%- for item in research_stays -%}
+    <div class="col py-2 row">
+      <div class="col-3 pt-1"><img src="{{ item.image }}" alt=""></div>
+      <div class="col-9">
+        <h6 class="m-0">{{ item.name }}</h6>
+        {{ item.description | markdownify | remove: "<p>" | remove: "</p>"}}<br>
+        {% capture date %}{% include date.html from=item.start_date to=item.end_date format="%b %Y" %}{% endcapture %}
+        <i>{{ date }}</i>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+{% endfor %}

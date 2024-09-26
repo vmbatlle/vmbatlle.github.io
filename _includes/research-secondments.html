@@ -1,0 +1,23 @@
+{% assign secondments = site.data.research | where_exp: "item", "item.type == 'secondment'" | sort: "date" | reverse %}
+{% if secondments.size > 0 %}
+
+## Secondments
+
+<div class="container mb-5">
+<div class="row row-cols-1 row-cols-md-2">
+
+{%- for secondment in secondments -%}
+    <div class="col py-2 row">
+    <div class="col-4 pt-1"><img src="{{ secondment.image }}" alt=""></div>
+    <div class="col-8">
+        <h5>{{ secondment.company }}</h5>
+        {{ secondment.location }}<br>
+        {% capture date %}{% include date.html from=secondment.start_date to=secondment.end_date format="%b %Y" %}{% endcapture %}
+        <i>{{ date }}</i>
+    </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+
+{% endif %}

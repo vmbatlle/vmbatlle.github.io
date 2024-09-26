@@ -1,0 +1,14 @@
+{% assign patents = site.data.research | where_exp: "item", "item.type == 'patent'" | sort: "date" | reverse %}
+{% if patents.size > 0 %}
+
+## Patents
+
+{%- for patent in patents -%}
+{% capture inventors %}{% include authors-list.html post=patent max_authors=999 format="plain" join=" -" %}{% endcapture %}
+* **{{ patent.number }}.** _&quot;{{ patent.title }}&quot;_. {{ inventors | upcase }} **{{ patent.date | date: "%Y" }}**.
+
+{% endfor %}
+
+<br>
+
+{% endif %}

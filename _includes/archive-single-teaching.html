@@ -48,14 +48,18 @@
           {% endif %}
           Semester.
           
-          From
-          {{ post.date | date: "%Y" }} 
-          to 
-          {% if post.end_date %}
-              {{ post.end_date | date: "%Y" }}.
-          {% else %}
-              present.
-          {% endif %}
+          {%- assign total_years = 0 -%}
+          {%- for date in post.dates -%}
+            {% unless forloop.first %}, {% endunless %}
+            {% assign start_date = date | first %}
+            {% assign end_date = date | last | default: site.time %}
+            {% include date.html from=start_date to=end_date format="%Y"%}
+            {%- assign start_date = start_date | date: '%s' -%}
+            {%- assign end_date = end_date | date: '%s' -%}
+            {%- assign secondsSince = end_date | minus: start_date -%}
+            {%- assign yearsSince = secondsSince | divided_by: 31536000.0 | ceil -%}
+            {%- assign total_years = total_years | plus: yearsSince -%}
+          {%- endfor -%}. ({{ total_years }} years)
         {% endif %}
 
     {% if post.excerpt and site.read_more != 'enabled' %}

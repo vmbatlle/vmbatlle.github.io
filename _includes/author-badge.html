@@ -1,23 +1,34 @@
 {%- if include.author contains '{' -%}
 {% assign author = include.author | split: '{' | first %}
 {% assign notes = include.author | split: '{' | last | remove: '}' | split: ',' | join: '' %}
+{% assign format = include.format | default: "badge" %}
 {%- else -%}
 {% assign author = include.author %}
 {% assign notes = '' %}
 {%- endif -%}
 {%- if site.data.authors contains author -%}
     {% assign author = site.data.authors[author] %}
-    {% assign name = author.name | split: "," %}
-    {% assign last_name = name | first %}
-    {% assign first_name = name | last %}
-    {% assign name = first_name | append: " " | append: last_name %}
-    {%- if author.uri -%}
-        <a href="{{ author.uri }}">{{ name }}</a>{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
-    {%- else -%}
-        {{ name }}{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
-    {%- endif -%}
-    {%- if author.orcid -%}&nbsp;<a href="https://orcid.org/{{ author.orcid }}"><i class="ai ai-orcid" aria-hidden="true"></i></a>{%- endif -%}
+    {%- case format -%}
+    {%- when "plain" -%}
+        {{ author.name }}{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
+    {%- when "badge" -%}
+        {% assign name = author.name | split: "," %}
+        {% assign last_name = name | first %}
+        {% assign first_name = name | last %}
+        {% assign name = first_name | append: " " | append: last_name %}
+        {%- if author.uri -%}
+            <a href="{{ author.uri }}">{{ name }}</a>{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
+        {%- else -%}
+            {{ name }}{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
+        {%- endif -%}
+        {%- if author.orcid -%}&nbsp;<a href="https://orcid.org/{{ author.orcid }}"><i class="ai ai-orcid" aria-hidden="true"></i></a>{%- endif -%}
+    {%- endcase -%}
 {%- else -%}
+    {%- case format -%}
+    {%- when "plain" -%}
+        {{ name }}{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
+    {%- when "badge" -%}
     {% assign name = author | split: ", " %}
-    {{ name | last }} {{ name | first }}{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
+        {{ name | last }} {{ name | first }}{% if include.show_notes %}<sup>{{ notes }}</sup>{% endif %}
+    {%- endcase -%}
 {%- endif -%}

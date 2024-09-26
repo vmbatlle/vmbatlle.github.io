@@ -25,13 +25,15 @@ layout: default
 
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
-        <header>
-          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+        <header class="text-center {% if page.title and page.title != '' %}mt-5 mb-4{% endif %}">
+          {% if page.title and page.title != "" %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
         {% if page.modified %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
+        {% else if page.title and page.title != "" %}
+          <div id="date_last_modified" class="small text-muted"></div>
         {% endif %}
         
         {% if page.collection == 'teaching' %}
@@ -93,3 +95,30 @@ layout: default
     </div>
   {% endif %}
 </div>
+
+<script>
+const dateTagId = "date_last_modified";
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+  if (this.readyState == 4 && this.status == 200)
+  {
+    let commits = JSON.parse(this.responseText);
+    var commit_date = commits[0].commit.committer.date;
+    var lastUpdated = new Date(commit_date);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    var dateString = lastUpdated.toLocaleDateString(undefined, options);
+    $(`#${dateTagId}`).text(`Last updated: ${dateString}`);
+  }
+};
+var element =  document.getElementById(dateTagId);
+if (typeof(element) != 'undefined' && element != null)
+{
+  xhttp.open("GET", "https://api.github.com/repos/{{site.repository}}/commits?path={{page.path}}&page=1&per_page=1", true);
+  xhttp.send();
+}
+</script>

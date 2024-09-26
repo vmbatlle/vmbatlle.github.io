@@ -1,0 +1,67 @@
+- type: secondment
+  company: EPFL
+  location: Lausanne, Switzerland
+  start_date: 01/05/2024
+  end_date: 31/10/2024
+  image: /images/research_epfl.png
+
+- type: secondment
+  company: Apple Inc.
+  location: Sunnyvale, California, US
+  start_date: 26/06/2023
+  end_date: 29/09/2023
+  image: /images/research_apple.gif
+
+- type: project
+  name: 'EndoMapper: Real-time mapping from endoscopic video'
+  description: 'Team member. Horizon 2020 FET Open. [Project website](https://sites.google.com/unizar.es/endomapper/home).'
+  start_date: 01/03/2021
+  end_date: 31/11/2024
+  image: /images/research_europe.gif
+
+- type: grant
+  name: 'FPU Grant'
+  description: 'PhD thesis. Competitive research grant. Spain.'
+  start_date: 01/12/2021
+  end_date: 30/11/2025
+  image: /images/research_spain.gif
+
+- type: grant
+  name: 'Beca de colaboración'
+  description: 'Bachelor&#39;s thesis. Competitive research grant. Spain.'
+  start_date: 01/09/2019
+  end_date: 30/06/2020
+  image: /images/research_spain.gif
+
+- type: patent
+  number: EP23382614.8
+  title: 'SELF-SUPERVISED METHOD FOR OBTAINING DEPTH, ALBEDO AND SURFACE ORIENTATION ESTIMATES OF A SPACE ILLUMINATED BY A LIGHT SOURCE'
+  authors:
+    - jrp
+    - vmbatlle
+    - tardos
+    - josemari
+    - jcivera
+    - rmcantin
+    - pascal.fua
+  date: 19/06/2023
+
+- type: review
+  journal: IEEE Transactions on Medical Imaging (TMI)
+  years: [2024, 2023]
+
+- type: review
+  journal: IEEE Transactions on Medical Robotics and Bionics (TMRB)
+  years: [2024]
+
+- type: review
+  conference: IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+  years: [2024, 2023, 2022]
+
+- type: review
+  conference: IEEE International Conference on Robotics and Automation (ICRA)
+  years: [2024]
+
+- type: review
+  conference: Eurographics
+  years: [2024]
