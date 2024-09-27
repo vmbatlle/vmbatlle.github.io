@@ -22,7 +22,7 @@
   {%- case format -%}
     {%- when "plain" -%}
       {%- include author-badge.html author=author_id format=format -%}{{ appendix }}
-    {%- when "badge" -%}
+    {% when "badge" %}
     <span class="text-nowrap">
       {%- include author-badge.html author=author_id format=format -%}{{ appendix }}
     </span>

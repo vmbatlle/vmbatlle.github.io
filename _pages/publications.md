@@ -13,6 +13,8 @@ author_profile: true
 
 {% include base_path %}
 
+<div id="date_last_modified" class="small text-center text-muted mb-4" data-path="_publications"></div>
+
 {% for post in site.publications reversed %}
   {% include archive-single-publication.html %}
 {% endfor %}

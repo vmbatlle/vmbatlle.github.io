@@ -4,6 +4,8 @@ title: "Research"
 author_profile: true
 ---
 
+<div id="date_last_modified" class="small text-center text-muted mb-4" data-path="_data/research.yml"></div>
+
 <div id="toc" class="text-center mb-4"></div>
 
 {% include research-secondments.html %}
