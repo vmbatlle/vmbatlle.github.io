@@ -274,6 +274,23 @@
       content: "\f35b";
     }
   }
+
+  .abstract {
+    
+    p {
+      text-align: justify;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+    }
+  
+    &.overflow {
+      p {
+        -webkit-line-clamp: 5;
+      }
+    }
+  }
 }
 
 .page__hero {

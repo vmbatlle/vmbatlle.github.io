@@ -116,7 +116,28 @@ layout: default
 
         {% if page.abstract %}
           <h3 class="mt-5">Abstract<span title="Go to top" class="back-to-top"></span></h3>
-          {{ page.abstract | markdownify }}
+          <div class="abstract overflow text-center">{{ page.abstract | markdownify }}</div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var abstract = document.querySelector('.abstract.overflow p');
+              if (abstract && abstract.offsetHeight < abstract.scrollHeight) {
+                var readMore = document.createElement('a');
+                readMore.href = '#';
+                readMore.classList.add('btn', 'btn-dark', 'rounded-pill', 'text-decoration-none', 'fw-light');
+                readMore.innerHTML = '<i class="bi bi-plus-lg"></i> More';
+                readMore.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  abstract.parentElement.classList.toggle('overflow');
+                  if (abstract.parentElement.classList.contains('overflow')) {
+                    readMore.innerHTML = '<i class="bi bi-plus-lg"></i> More';
+                  } else {
+                    readMore.innerHTML = '<i class="bi bi-dash-lg"></i> Less';
+                  }
+                });
+                abstract.parentElement.appendChild(readMore);
+              }
+            });
+          </script>
         {% endif %}
 
         {{ content }}
@@ -125,7 +146,7 @@ layout: default
           <h3 class="mt-5">Overview Video<span title="Go to top" class="back-to-top"></span></h3>
           {% assign video_id = post.videourl | split: "?v=" | last | split: "&" | first %}
           <div class="">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="56%" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         {% endif %}
 
