@@ -1,0 +1,85 @@
+<script type="module">
+    import pdfjsDist from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/+esm'
+  
+    // If absolute URL from the remote server is provided, configure the CORS
+    // header on that server.
+ 
+    // The workerSrc property shall be specified.
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.worker.min.mjs";
+
+    var carousels = document.querySelectorAll('[data-type="application/pdf"]');
+    carousels.forEach(carousel => {
+        var carousel_id = `carousel-${Math.random().toString(36).substring(7)}`;
+        carousel.innerHTML = `
+        <div id="${carousel_id}" class="carousel slide mb-3" data-bs-theme="dark">
+            <div class="carousel-indicators d-none">
+            </div>
+            <div class="carousel-inner">
+            </div>
+            <button class="carousel-control-prev d-none" type="button" data-bs-target="#${carousel_id}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next d-none" type="button" data-bs-target="#${carousel_id}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        `;
+
+        var url = carousel.getAttribute('src');
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+    
+        // Asynchronous download of PDF
+        var loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.promise.then(function(pdf) {
+
+        for (var i = 0; i < pdf.numPages; i++) {
+        if (i == 0) {
+            carousel.querySelector('.carousel-indicators').innerHTML += `<button type="button" data-bs-target="#${carousel_id}" data-bs-slide-to="${i}" class="active" aria-current="true" aria-label="Slide ${i}"></button>`;
+        } else {
+            carousel.querySelector('.carousel-indicators').innerHTML += `<button type="button" data-bs-target="#${carousel_id}" data-bs-slide-to="${i}" aria-label="Slide ${i}"></button>`;
+        }
+      }
+  
+        // Fetch the first page
+        function renderPage(pageNumber) {
+            pdf.getPage(pageNumber).then(function(page) {    
+                var scale = 1;
+                var viewport = page.getViewport({scale: scale});
+            
+                // Prepare canvas using PDF page dimensions
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+            
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.promise.then(function () {
+                    if (pageNumber == 1) {
+                        carousel.querySelector('.carousel-inner').innerHTML += `<div class="carousel-item active"><img src="${canvas.toDataURL()}" class="d-block w-100" alt="..."></div>`;
+                    } else {
+                        carousel.querySelector('.carousel-inner').innerHTML += `<div class="carousel-item"><img src="${canvas.toDataURL()}" class="d-block w-100" alt="..."></div>`;
+                    }
+                    if (pageNumber < pdf.numPages) {
+                        renderPage(pageNumber + 1);
+                    } else {
+                        carousel.querySelector('.carousel-indicators').classList.remove('d-none');
+                        carousel.querySelector('.carousel-control-prev').classList.remove('d-none');
+                        carousel.querySelector('.carousel-control-next').classList.remove('d-none');
+                    }
+                });
+            });
+        }
+        renderPage(1);
+        }, function (reason) {
+        // PDF loading error
+        console.error(reason);
+        });
+    });
+  </script>

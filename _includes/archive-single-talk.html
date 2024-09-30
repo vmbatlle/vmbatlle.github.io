@@ -1,42 +1,93 @@
 {% include base_path %}
 
-{% if post.header.teaser %}
-  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% if post.thumbnail.image %}
+  {% capture thumbnail %}{{ post.thumbnail.image }}{% endcapture %}
+{% elsif post.header.teaser %}
+  {% capture thumbnail %}{{ post.header.teaser }}{% endcapture %}
 {% else %}
-  {% assign teaser = site.teaser %}
+  {% assign thumbnail = site.teaser %}
+{% endif %}
+
+{% if post.thumbnail.background %}
+  {% capture thumbnail_background %}{{ post.thumbnail.background }}{% endcapture %}
+{% else %}
+  {% assign thumbnail_background = site.thumbnail_background %}
 {% endif %}
 
 {% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+  {% assign title = post.title | remove: "{" | remove: "}" | markdownify | remove: "<p>" | remove: "</p>"  | strip %}
 {% else %}
-  {% assign title = post.title %}
+  {% assign title = post.title | remove: "{" | remove: "}" | strip %}
 {% endif %}
 
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
+  <div class="row p-3">
+    {% assign permalink = post.url | prepend: base_path %}
+    <a href="{{ permalink }}">
+    {% if include.type == "grid" and thumbnail %}
       <div class="archive__item-teaser">
-        <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
-          {% else %}
-            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
-          {% endif %}
-          alt="">
+      <img src=
+        {% if thumbnail contains "://" %}
+          "{{ thumbnail }}"
+        {% else %}
+          "{{ thumbnail | prepend: "/images/" | prepend: base_path }}"
+        {% endif %}
+        alt="Teaser for {{ title }}">
+      </div>
+    {% else %}
+      <div class="d-none d-md-inline col-md-4">
+      {% if thumbnail %}
+        <img class="img-thumbnail p-2" style="background: {{ thumbnail_background | default: default }}" src=
+        {% if thumbnail contains "://" %}
+          "{{ thumbnail }}"
+        {% else %}
+          "{{ thumbnail | prepend: "/images/" | prepend: base_path }}"
+        {% endif %}
+        alt="">
+      {% elsif post.videourl contains "://www.youtube.com" %}
+        {% assign youtube_code = post.videourl | split: "v=" | last | split: "?" | first %}
+        <img class="img-thumbnail" src="https://img.youtube.com/vi/{{ youtube_code }}/mqdefault.jpg" alt="Video thumbnail for {{ title }}">
+      {% else %}
+        
+      {% endif %}
+      </a>
       </div>
     {% endif %}
-    <h2 class="archive__item-title" itemprop="headline">
+
+    <div class="col-12 col-md-8">
+    <div class="h5 mb-2">
+    <b class="archive__item-title" itemprop="headline">
+      {% assign permalink = post.url | prepend: base_path %}
       {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+        <a href="{{ post.link }}">{{ title }}.</a> <a href="{{ permalink }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+        <a href="{{ permalink }}" rel="permalink">{{ title }}.</a>
       {% endif %}
-    </h2>
-    {% if post.read_time %}
-      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+    </b>
+    </div>
+
+    {% if post.authors %}
+      <span class="archive__item-authors authors">
+      {% include authors-list.html post=post %}
+      </span>
     {% endif %}
-    {% if post.date %}<p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ post.date | date: '%B %d, %Y' }}</p>{% endif %}
-    {% if post.venue %}<p class="archive__item-excerpt" itemprop="description">{{post.type}}, {{ post.venue }},  {{post.location}} {% endif %}
-    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>{% endif %}
+    
+    <div class="mb-2">
+    {% if post.duration %}
+    <div class="badge rounded-pill text-bg-dark"><i class="fa-solid fa-clock"></i> {{ post.duration }}</div>
+    {% endif %}
+    {% if post.date %}
+    <div class="badge rounded-pill text-bg-dark"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></div>
+    {% endif %}
+    {% if post.type %}
+    <div class="badge rounded-pill text-bg-dark"><i class="fa fa-fw fa-tag" aria-hidden="true"></i> {{ post.type }}</div>
+    {% endif %}
+    </div>
+
+    <p class="small text-justify" itemprop="description">{{ post.summary }}</p>
+
+  </div>
+  </div>
   </article>
 </div>

@@ -21,7 +21,13 @@ grant,Research grants
   {% assign research_stays = site.data.research | where_exp: "item", "item.type == type" | sort: "start_date" | reverse %}
   {%- for item in research_stays -%}
     <div class="col py-2 row">
-      <div class="col-3"><img src="{{ item.image }}" alt=""></div>
+      <div class="col-3"><img src=
+        {% if item.image contains "://" %}
+          "{{ item.image }}"
+        {% else %}
+          "{{ item.image | prepend: "/images/" | prepend: base_path }}"
+        {% endif %}
+        alt="Logo for {{ item.name }}"></div>
       <div class="col-9">
         <h6 class="m-0">{{ item.name }}</h6>
         {{ item.description | markdownify | remove: "<p>" | remove: "</p>"}}<br>

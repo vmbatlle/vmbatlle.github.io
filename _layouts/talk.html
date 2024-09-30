@@ -26,21 +26,36 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.title %}<h1 class="page__title mb-3" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
-        {% if page.modified %}
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>Date:</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
-        {% elsif page.date %}
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>Date:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+          {% if page.pdfurl %}
+          <div data-type="application/pdf" src="{{ page.pdfurl }}"></div>
+          {% endif %}
+          {% if page.modified %}
+            <p class="page__date mb-1"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Date:</strong> <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time></p>
+          {% elsif page.date %}
+            <p class="page__date mb-1"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Date:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+          {% endif %}
+          {% if page.authors %}
+            <p class="page__authors mb-1"><strong><i class="fa fa-fw fa-user" aria-hidden="true"></i> Authors:</strong> {% include authors-list.html post=page %}</p>
+          {% endif %}
+          {% if page.duration %}
+            <p class="page__duration mb-1"><strong><i class="fa fa-fw fa-clock" aria-hidden="true"></i> Duration:</strong> {{ page.duration }}</p>
         {% endif %}
-        {% if page.talk_type %}<p>{{page.talk_type}} at {{ page.venue }},  {{page.location}} {% endif %}
+        {% if page.venue or page.location %}
+        {% if page.type %}
+        <p class="page_venue mb-1"><strong><i class="bi bi-geo-alt-fill"></i> Location: </strong>{{page.type}} at {{ page.venue }},  {{page.location}}</p>
+        {% else %}
+          <p class="page_venue mb-1"><strong><i class="bi bi-geo-alt-fill"></i> Location: </strong>{{ page.venue }},  {{page.location}}</p>
+        {% endif %}
+        {% endif %}
 
         </header>
       {% endunless %}
 
-      <section class="page__content" itemprop="text">
+      <section class="page__content mt-3" itemprop="text">
         {{ content }}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
