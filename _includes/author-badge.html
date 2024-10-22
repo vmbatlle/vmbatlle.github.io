@@ -1,11 +1,11 @@
 {%- if include.author contains '{' -%}
 {% assign author = include.author | split: '{' | first %}
 {% assign notes = include.author | split: '{' | last | remove: '}' | split: ',' | join: '' %}
-{% assign format = include.format | default: "badge" %}
 {%- else -%}
 {% assign author = include.author %}
 {% assign notes = '' %}
 {%- endif -%}
+{% assign format = include.format | default: "badge" %}
 {%- if site.data.authors contains author -%}
     {% assign author = site.data.authors[author] %}
     {%- case format -%}
