@@ -1,9 +1,9 @@
 ---
-title: "Absolute Scale Estimation from Monocular Colonoscopy Sequences"
+title: "Metric-scale Monocular SLAM in Colonoscopy"
 collection: teaching
-type: "Bachelor's thesis"
-venue: "BSc Computer Science"
-date: 2023-06-21
+type: "Master's thesis"
+venue: "MSc Robotics, Graphics and Computer Vision"
+date: 2025-02-11
 location: "Universidad de Zaragoza"
 grade: "Matrícula de honor"
 authors:

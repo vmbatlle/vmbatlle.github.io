@@ -2,7 +2,7 @@
 title: "{EndoMetric}: Near-light metric scale monocular SLAM"
 collection: publications
 date: 2024-10-19
-last_modified_at: 2024-10-19
+last_modified_at: 2025-02-28
 doi: 
 venue: 'arXiv preprint'
 pages: 
@@ -19,8 +19,10 @@ authors:
   - josemari
 notes:
   - "{} Universidad de Zaragoza"
+thumbnail:
+  image: iranzo2025_endometric.webp
 header:
-  teaser: iranzo2024_endometric.webp
+  teaser: iranzo2025_endometric_header.svg
 abstract:
   "Geometric reconstruction and SLAM with endoscopic images have seen significant advancements in recent years. In most medical specialties, the endoscopes used are monocular, and the algorithms applied are typically extensions of those designed for external environments, resulting in 3D reconstructions up to an unknown scale factor. 
   

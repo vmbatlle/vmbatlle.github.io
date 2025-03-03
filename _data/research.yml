@@ -16,7 +16,7 @@
   name: 'EndoMapper: Real-time mapping from endoscopic video'
   description: 'Team member. Horizon 2020 FET Open. [Project website](https://sites.google.com/unizar.es/endomapper/home).'
   start_date: 01/03/2021
-  end_date: 31/11/2024
+  end_date: 30/11/2024
   image: research_europe.gif
 
 - type: grant
@@ -48,7 +48,7 @@
 
 - type: review
   journal: IEEE Transactions on Medical Imaging (TMI)
-  years: [2024, 2023]
+  years: [2025, 2024, 2023]
 
 - type: review
   journal: IEEE Transactions on Medical Robotics and Bionics (TMRB)
