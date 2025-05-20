@@ -192,8 +192,8 @@ li ol {
 figure {
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+          justify-content: center;
   -webkit-box-align: start;
           align-items: flex-start;
   flex-wrap: wrap;
@@ -247,9 +247,9 @@ figure {
 
 figcaption {
   margin-bottom: 0.5em;
-  color: mix(#fff, $text-color, 25%);
+  /* color: mix(#fff, $text-color, 25%); */
   font-family: $caption-font-family;
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 
   a {
     color: inherit;

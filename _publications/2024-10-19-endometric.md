@@ -1,10 +1,11 @@
 ---
-title: "{EndoMetric}: Near-light metric scale monocular SLAM"
+title: "{EndoMetric}: Near-Light Monocular Metric Scale Estimation in Endoscopy"
 collection: publications
-date: 2024-10-19
-last_modified_at: 2025-02-28
+permalink: /publications/endometric
+date: 2025-09-23
+last_modified_at: 2025-05-20
 doi: 
-venue: 'arXiv preprint'
+venue: 'Int. conf. on Medical Image Computing and Computer Assisted Intervention (MICCAI)'
 pages: 
 videourl: 'https://www.youtube.com/watch?v=WUHts99cs3M'
 paperurl: 
@@ -13,25 +14,39 @@ posterurl:
 arxiv: '2410.15065'
 website: 
 authors:
-  - riranzo
-  - vmbatlle
+  - riranzo{*}
+  - vmbatlle{*}
   - tardos
   - josemari
 notes:
   - "{} Universidad de Zaragoza"
+  - "{*} Equal contribution"
 thumbnail:
   image: iranzo2025_endometric.webp
 header:
   teaser: iranzo2025_endometric_header.svg
 abstract:
-  "Geometric reconstruction and SLAM with endoscopic images have seen significant advancements in recent years. In most medical specialties, the endoscopes used are monocular, and the algorithms applied are typically extensions of those designed for external environments, resulting in 3D reconstructions up to an unknown scale factor. 
-  
-  In this paper, we take advantage of the fact that standard endoscopes are equipped with near-light sources positioned at a small but non-zero baseline from the camera. By leveraging the inverse-square law of light decay, we enable, for the first time, monocular reconstructions with accurate metric scale. This paves the way to transform any endoscope into a metric device, which is essential for practical applications such as measuring polyps, stenosis, or the extent of tissue affected by disease."
+  "Geometric reconstruction and SLAM with endoscopic images have advanced significantly in recent years. In most medical fields, monocular endoscopes are employed, and the algorithms used are typically adaptations of those designed for external environments, resulting in 3D reconstructions with an unknown scale factor.
+ 
+
+  For the first time, we propose a method to estimate the real metric scale of a 3D reconstruction from standard monocular endoscopic images, under unknown varying albedo,  without relying on application-specific learned priors. Our fully model-based approach leverages the near-light sources embedded in endoscopes, positioned at a small but nonzero baseline from the camera, in combination with the inverse-square law of light attenuation, to accurately recover the metric scale from scratch. This enables the transformation of any endoscope into a metric device, which is crucial for applications such as measuring polyps, stenosis, or assessing the extent of diseased tissue."
 keywords: 
-  - Metric scale
-  - Illumination Decline
   - Endoscopy
-bibtex: article
+  - Metric scale
+  - Size estimation
+  - Illumination Decline
+bibtex: inproceedings
 related:
   - /publications/photometric
 ---
+
+### Real polyps measurement
+
+In the _EndoMapper dataset_, we show the method’s potential for standardizing polyp size assessment. On average, our measurements deviate from the endoscopist's estimation by 1.0mm (13%).
+
+<figure class="">
+  <img src="/images/iranzo2025_endometric_real.webp" alt="Results in EndoMapper dataset" style="max-width: 90%">
+  <figcaption>
+    <b>Figure.</b> Results in EndoMapper dataset <a href="https://doi.org/10.1038/s41597-023-02564-7">[2]</a>.
+  </figcaption>
+</figure>

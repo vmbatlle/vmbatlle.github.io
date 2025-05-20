@@ -4,7 +4,7 @@ collection: publications
 date: 2022-10-23
 last_modified_at: 2024-06-26
 doi: 'https://doi.org/10.1109/IROS47612.2022.9981742'
-venue: 'IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)'
+venue: 'IEEE/RSJ Int. conf. on Intelligent Robots and Systems (IROS)'
 videourl: 'https://www.youtube.com/watch?v=zlls1mVsFA0'
 slidesurl: '/files/batlle22_photometric_slides.pdf'
 arxiv: '2204.09083'
