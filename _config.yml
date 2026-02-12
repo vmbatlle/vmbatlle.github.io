@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Víctor M. Batlle"
 title_separator          : "-"
 name                     : &name "Víctor M. Batlle"
-description              : &description "PhD candidate in Computer Vision and Machine Learning at the University of Zaragoza"
+description              : &description "Researcher in Computer Vision and Machine Learning at the University of Zaragoza"
 url                      : https://vmbatlle.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "vmbatlle/vmbatlle.github.io"
@@ -22,9 +22,9 @@ repository               : "vmbatlle/vmbatlle.github.io"
 author:
   # Biographic information
   avatar           : https://gravatar.com/avatar/663927662464bd404edec9b8e0d149f8639287f35059946ec31682294c682e4a?s=175
-  name             : "Víctor Martínez Batlle"
+  name             : "Víctor M. Batlle, PhD"
   pronouns         : # "he/him"
-  bio              : "PhD candidate in CV/ML at <a href='https://ropert.i3a.es'>ROPERT</a>, <a href='https://i3a.es'>I3A</a>, <a href='https://unizar.es'>Universidad de Zaragoza</a>"
+  bio              : "Researcher in CV/ML at <a href='https://ropert.i3a.es'>ROPERT</a>, <a href='https://i3a.es'>I3A</a>, <a href='https://unizar.es'>Universidad de Zaragoza</a>"
   location         : "Office L1.08,<a href='https://maps.app.goo.gl/qUjWbbThzHj3x3FY6'>Edificio Ada Byron</a><a href='https://sigeuz.unizar.es/?room=CRE.1200.01.275'>Show map</a>C/ María de Luna 1<br>Departamento de Informática e<br>Ingeniería de Sistemas<br>50018 Zaragoza<br>Spain<br><br>"
   employer         : # "University of Zaragoza"
   uri              : # URL
@@ -43,7 +43,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : # Username
+  github           : vmbatlle
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 

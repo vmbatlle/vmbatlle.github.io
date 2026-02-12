@@ -12,9 +12,23 @@
   end_date: 29/09/2023
   image: research_apple.gif
 
+- type: secondment
+  company: Apple Inc.
+  location: Sunnyvale, California, US
+  start_date: 27/05/2023
+  end_date: 19/09/2023
+  image: research_apple.gif
+
+- type: project
+  name: 'EncoCartoScope: Transforming any Endoscope into a Smart Device for Intraoperative 3D Localization, Navigation and Mapping'
+  description: 'Team member. Horizon EIC 2024 Transition Open. [Project website](https://cordis.europa.eu/project/id/101211633/es).'
+  start_date: 20/01/2026
+  end_date: 20/01/2027
+  image: research_europe.gif
+
 - type: project
   name: 'EndoMapper: Real-time mapping from endoscopic video'
-  description: 'Team member. Horizon 2020 FET Open. [Project website](https://sites.google.com/unizar.es/endomapper/home).'
+  description: 'Team member. Horizon EIC 2020 FET Open. [Project website](https://sites.google.com/unizar.es/endomapper/home).'
   start_date: 01/03/2021
   end_date: 30/11/2024
   image: research_europe.gif
@@ -34,7 +48,7 @@
   image: research_spain.gif
 
 - type: patent
-  number: EP23382614.8
+  number: '[WO2024260942A1](https://patents.google.com/patent/WO2024260942A1/)''
   title: 'SELF-SUPERVISED METHOD FOR OBTAINING DEPTH, ALBEDO AND SURFACE ORIENTATION ESTIMATES OF A SPACE ILLUMINATED BY A LIGHT SOURCE'
   authors:
     - jrp
@@ -53,6 +67,10 @@
 - type: review
   journal: IEEE Transactions on Medical Robotics and Bionics (TMRB)
   years: [2024]
+
+- type: review
+  journal: Medical Image Computing and Computer Assisted Intervention (MICCAI)
+  years: [2025]
 
 - type: review
   conference: IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)

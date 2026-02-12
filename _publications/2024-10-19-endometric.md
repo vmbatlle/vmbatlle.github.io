@@ -7,7 +7,7 @@ last_modified_at: 2025-05-20
 doi: 
 venue: 'Int. conf. on Medical Image Computing and Computer Assisted Intervention (MICCAI)'
 pages: 
-videourl: 'https://www.youtube.com/watch?v=WUHts99cs3M'
+videourl: 'https://www.youtube.com/watch?v=bjRvyTS7_CI'
 paperurl: 
 suppurl: 
 posterurl: 

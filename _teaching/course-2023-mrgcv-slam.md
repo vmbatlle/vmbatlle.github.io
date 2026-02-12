@@ -1,10 +1,10 @@
 ---
-title: "Simultaneous localization and mapping (SLAM)"
+title: "Human-computer interaction (HCI)"
 collection: teaching
-type: "Master's course"
-link: https://estudios.unizar.es/estudio/asignatura?anyo_academico=2022&asignatura_id=69156&estudio_id=20220713&centro_id=110&plan_id_nk=615
-venue: "MSc Robotics, Graphics and Computer Vision"
+type: "Undergraduate course"
+link: https://estudios.unizar.es/estudio/asignatura?anyo_academico=2024&asignatura_id=30217&estudio_id=20240148&centro_id=110&plan_id_nk=439
+venue: "BSc Computer Science"
 dates: 
-    - [2023-02-01, null]
+    - [2026-01-19, null]
 location: "Universidad de Zaragoza"
 ---

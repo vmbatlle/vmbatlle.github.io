@@ -5,6 +5,6 @@ type: "Undergraduate course"
 link: https://estudios.unizar.es/estudio/asignatura?anyo_academico=2022&asignatura_id=30231&estudio_id=20220148&centro_id=110&plan_id_nk=439
 venue: "BSc Computer Science"
 dates: 
-    - [2023-02-01, null]
+    - [2023-02-01, 2025-07-15]
 location: "Universidad de Zaragoza"
 ---
