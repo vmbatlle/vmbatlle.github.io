@@ -2,48 +2,42 @@
 ---
 
 /*
- *    Minimal Mistakes Jekyll Theme
+ * This file controls what is imported from /_sass
  *
- *  - Michael Rose
- *  - mademistakes.com
- *  - https://twitter.com/mmistakes
- *
-*/
+ * Note that the files are processed in the order they are imported, so they are partly
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ */
 
-@import "vendor/breakpoint/breakpoint"; // media query mixins
-@import "variables";
-@import "mixins";
-@import "vendor/susy/susy";
+@import
+    "vendor/breakpoint/breakpoint",
 
-@import "reset";
-@import "base";
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
 
-@import "utilities";
-@import "animations";
-@import "tables";
-@import "buttons";
-@import "notices";
-@import "masthead";
-@import "navigation";
-@import "footer";
-@import "syntax";
-@import "videos";
+    "include/mixins",
+    "vendor/susy/susy",
 
-@import "forms";
+    "layout/reset",
+    "layout/base",
 
-@import "page";
-@import "archive";
-@import "sidebar";
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
 
-@import "vendor/font-awesome/fontawesome";
-@import "vendor/font-awesome/solid";
-@import "vendor/font-awesome/brands";
+    "layout/forms",
 
-$fa-font-path: "../webfonts/fa5";
-$fa-css-prefix: fa5;
-@import "vendor/font-awesome-5/fontawesome";
-@import "vendor/font-awesome-5/solid";
-@import "vendor/font-awesome-5/brands";
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar",
+    "layout/json_cv",
 
-@import "vendor/magnific-popup/magnific-popup";
-@import "print";
+    "vendor/font-awesome/fontawesome",
+    "vendor/font-awesome/solid",
+    "vendor/font-awesome/brands"
+;
