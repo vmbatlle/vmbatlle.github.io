@@ -1,7 +1,10 @@
 # News
 
 - date: 2025-11-26
-  text: "I defended my PhD thesis at [University of Zaragoza](https://www.unizar.es/) under the supervision of [Prof. Mingo Tardós](https://webdiis.unizar.es/~jdtardos/)"
+  text: "I defended my [PhD thesis](https://zaguan.unizar.es/record/170369?ln=en) under the supervision of [Prof. Mingo Tardós](https://webdiis.unizar.es/~jdtardos/)."
+
+- date: 2025-09-23
+  text: "If you are at [MICCAI 2025](https://conferences.miccai.org/2025/) in Daejeon, please come by and say hello! We'll be there presenting [EndoMetric](/publications/endometric)."
 
 - date: 2025-05-27
   text: "I'm back at [Apple Vision Pro](https://www.apple.com/) for another 4 months as CV/ML Intern."

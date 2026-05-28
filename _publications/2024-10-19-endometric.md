@@ -4,13 +4,13 @@ collection: publications
 permalink: /publications/endometric
 date: 2025-09-23
 last_modified_at: 2025-05-20
-doi: 
+doi: 'https://doi.org/10.1007/978-3-032-05127-1_18'
 venue: 'Int. conf. on Medical Image Computing and Computer Assisted Intervention (MICCAI)'
 pages: 
 videourl: 'https://www.youtube.com/watch?v=bjRvyTS7_CI'
-paperurl: 
-suppurl: 
-posterurl: 
+paperurl: 'https://papers.miccai.org/miccai-2025/paper/1790_paper.pdf'
+suppurl:
+posterurl: '/files/iranzo25_endometric_poster.pdf'
 arxiv: '2410.15065'
 website: 
 authors:

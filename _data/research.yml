@@ -15,8 +15,8 @@
 - type: secondment
   company: Apple Inc.
   location: Sunnyvale, California, US
-  start_date: 27/05/2023
-  end_date: 19/09/2023
+  start_date: 27/05/2025
+  end_date: 19/09/2025
   image: research_apple.gif
 
 - type: project
@@ -48,7 +48,7 @@
   image: research_spain.gif
 
 - type: patent
-  number: '[WO2024260942A1](https://patents.google.com/patent/WO2024260942A1/)''
+  number: '[EP4736118A1](https://patents.google.com/patent/EP4736118A1/)'
   title: 'SELF-SUPERVISED METHOD FOR OBTAINING DEPTH, ALBEDO AND SURFACE ORIENTATION ESTIMATES OF A SPACE ILLUMINATED BY A LIGHT SOURCE'
   authors:
     - jrp
@@ -58,7 +58,7 @@
     - jcivera
     - rmcantin
     - pascal.fua
-  date: 19/06/2023
+  date: 18/06/2024
 
 - type: review
   journal: IEEE Transactions on Medical Imaging (TMI)

@@ -63,13 +63,13 @@ layout: default
         {% if post.arxiv %}{% assign arxiv_pdf = 'https://arxiv.org/pdf/' | append: post.arxiv %}{% endif %}
         {% assign max-buttons = post.max-buttons | minus: 1 %}
         {% assign button-counter = 0 %}
-        {% include publication-button.html url=post.paperurl icon='fa5-file-pdf' text='Paper' max-buttons=max-buttons %}
-        {% unless post.paperurl %}{% include publication-button.html url=arxiv_pdf icon='fa5-file-pdf' text='Paper' max-buttons=max-buttons %}{% endunless %}
+        {% include publication-button.html url=post.paperurl icon='fa-file-pdf' text='Paper' max-buttons=max-buttons %}
+        {% unless post.paperurl %}{% include publication-button.html url=arxiv_pdf icon='fa-file-pdf' text='Paper' max-buttons=max-buttons %}{% endunless %}
         {% include publication-button.html url=arxiv_abs icon='ai-arxiv' text='arXiv' max-buttons=max-buttons %}
         {% include publication-button.html url=post.website icon='bi-globe2' text='Project page' max-buttons=max-buttons %}
         {% include publication-button.html url=post.codeurl icon='bi-github' text='Code' max-buttons=max-buttons %}
         {% include publication-button.html url=post.videourl icon='bi-youtube' text='Video' max-buttons=max-buttons %}
-        {% include publication-button.html url=post.suppurl icon='fa5-file-pdf' text='Supp' max-buttons=max-buttons %}
+        {% include publication-button.html url=post.suppurl icon='fa-file-pdf' text='Supp' max-buttons=max-buttons %}
         {% include publication-button.html url=post.posterurl icon='bi-image' text='Poster' max-buttons=max-buttons %}
         {% include publication-button.html url=post.slidesurl icon='bi-image' text='Slides' max-buttons=max-buttons %}
         {% include publication-button.html url='#cite' icon='bi-quote' text='BibTeX' max-buttons=max-buttons %}
